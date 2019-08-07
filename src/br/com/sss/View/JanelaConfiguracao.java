@@ -1,6 +1,6 @@
 package br.com.sss.View;
 
-import br.com.model.Empresa;
+import br.com.sss.model.Empresa;
 import br.com.sss.Control.BackupSql;
 import br.com.sss.Control.CaminhoImagem;
 import br.com.sss.Control.Conexao;

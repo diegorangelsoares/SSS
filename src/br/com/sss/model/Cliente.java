@@ -1,5 +1,5 @@
 
-package br.com.model;
+package br.com.sss.model;
 
 /**
  *

@@ -5,7 +5,7 @@
  */
 package br.com.sss.Control;
 
-import br.com.model.Protocolo;
+import br.com.sss.model.Protocolo;
 import br.com.sss.View.JanelaPesquisaProtocolo;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +23,27 @@ public class ControllerJanelaProtocolos {
     }
     
     public void pesquisaProtocolos(JanelaPesquisaProtocolo j){
-        
+        String operadora = (String) j.campoOperadora.getSelectedItem();
+        String atendente = (String) j.campoAtendente.getSelectedItem();
+        if (operadora == null){
+            operadora = "";
+        }
+        if (atendente == null){
+            atendente = "";
+        }
         List<Protocolo> protocolos = null;
-        protocolos = protocoloController.buscaProtocolosSimples(j.campoNomeProduto1.getText());
+        if (operadora.equals("") && atendente.equals("")){
+            protocolos = protocoloController.buscaProtocolosSimples(j.campoDescricao.getText());
+        }
+        if (!operadora.equals("") && atendente.equals("")){
+            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), operadora, atendente);
+        }
+        if (operadora.equals("") && !atendente.equals("")){
+            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), operadora, atendente);
+        }
+        if (!operadora.equals("") && !atendente.equals("")){
+            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), operadora, atendente);
+        }
         if (protocolos == null){
             JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum protocolo com estas informações!");
         }else{
@@ -37,5 +55,29 @@ public class ControllerJanelaProtocolos {
         }
         
     }
+    
+    public void alimentaAtendentes(JanelaPesquisaProtocolo j){
+        List<String> atendentes = protocoloController.retornaAtendentesDosProtocolos();
+        j.campoAtendente.addItem("");
+        if (atendentes == null){
+            //JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum protocolo com estas informações!");
+        }else{
+            for (int i = 0; i < atendentes.size(); i++) {
+                j.campoAtendente.addItem(atendentes.get(i));
+            }
+        }       
+    } 
+    
+    public void alimentaOperadoras(JanelaPesquisaProtocolo j){
+        List<String> Operadoras = protocoloController.retornaOperadorasDosProtocolos();
+        j.campoOperadora.addItem("");
+        if (Operadoras == null){
+            //JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum protocolo com estas informações!");
+        }else{
+            for (int i = 0; i < Operadoras.size(); i++) {
+                j.campoOperadora.addItem(Operadoras.get(i));
+            }
+        }       
+    } 
     
 }

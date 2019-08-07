@@ -27,6 +27,7 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
     CaminhoImagem caminhoImagemIcone = new CaminhoImagem();
     Clean limpar = new Clean();
     Conexao co = new Conexao();
+    ControllerJanelaProtocolos controller = new ControllerJanelaProtocolos();
     
     /**
      * Creates new form JanelaAlteracaoProdutos
@@ -42,10 +43,10 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
        
         
         //colocar barra de rolagem na tabela
-        tabelaProcotolos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //tabelaProcotolos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
-        tabelaProcotolos.setColumnSelectionAllowed(true);  
-        tabelaProcotolos.setRowSelectionAllowed(true);
+//        tabelaProcotolos.setColumnSelectionAllowed(true);  
+//        tabelaProcotolos.setRowSelectionAllowed(true);
         
         /**
         tabelaProcotolos.setValueAt("1264555", 0, 0);
@@ -58,7 +59,9 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
         * */
         
 //        co.atualizaGrupoNaJanelaAlteracao(this);
-        
+
+        controller.alimentaOperadoras(this);
+        controller.alimentaAtendentes(this);
        
     }
     
@@ -87,9 +90,7 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        campoNomeProduto1 = new javax.swing.JTextField();
-        campoCodigo = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        campoDescricao = new javax.swing.JTextField();
         botaoPesquisar = new javax.swing.JButton();
         PainelTabelaProdutos1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -97,7 +98,12 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
         botaoSair = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        campoGrupo = new javax.swing.JComboBox();
+        campoOperadora = new javax.swing.JComboBox();
+        jLabel16 = new javax.swing.JLabel();
+        campoAtendente = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        campoMensagem = new javax.swing.JTextField();
+        botaoLimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -108,26 +114,14 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Descrição da pesquisa");
+        jLabel8.setText("Descrição do assunto");
 
-        campoNomeProduto1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        campoNomeProduto1.addKeyListener(new java.awt.event.KeyAdapter() {
+        campoDescricao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campoDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                campoNomeProduto1KeyPressed(evt);
+                campoDescricaoKeyPressed(evt);
             }
         });
-
-        campoCodigo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        campoCodigo.setEnabled(false);
-        campoCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                campoCodigoKeyPressed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("Código");
-        jLabel9.setEnabled(false);
 
         botaoPesquisar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoPesquisar.setText("Pesquisar");
@@ -177,7 +171,7 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
             tabelaProcotolos.getColumnModel().getColumn(0).setResizable(false);
             tabelaProcotolos.getColumnModel().getColumn(0).setPreferredWidth(100);
             tabelaProcotolos.getColumnModel().getColumn(1).setResizable(false);
-            tabelaProcotolos.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tabelaProcotolos.getColumnModel().getColumn(1).setPreferredWidth(200);
             tabelaProcotolos.getColumnModel().getColumn(2).setResizable(false);
             tabelaProcotolos.getColumnModel().getColumn(2).setPreferredWidth(800);
         }
@@ -211,7 +205,7 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
         PainelTabelaProdutos1Layout.setVerticalGroup(
             PainelTabelaProdutos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelTabelaProdutos1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelTabelaProdutos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,51 +216,90 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Operadora");
 
-        campoGrupo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        campoGrupo.setSelectedItem("");
+        campoOperadora.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campoOperadora.setSelectedItem("");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setText("Atendente");
+
+        campoAtendente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campoAtendente.setSelectedItem("");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("Trecho da Mensagem");
+
+        campoMensagem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campoMensagem.setToolTipText("Sem pesquisa por mensagens");
+        campoMensagem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                campoMensagemKeyPressed(evt);
+            }
+        });
+
+        botaoLimpar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        botaoLimpar.setText("Limpar");
+        botaoLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLimparActionPerformed(evt);
+            }
+        });
+        botaoLimpar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                botaoLimparKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(campoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(campoNomeProduto1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(campoGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(campoDescricao))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoPesquisar)))
-                .addGap(248, 248, 248))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(PainelTabelaProdutos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(campoMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addComponent(campoOperadora, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(campoAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoPesquisar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(PainelTabelaProdutos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 11, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoNomeProduto1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoGrupo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoPesquisar, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel16))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(campoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoOperadora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoPesquisar)
+                    .addComponent(botaoLimpar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PainelTabelaProdutos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -279,7 +312,7 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,29 +322,18 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoNomeProduto1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNomeProduto1KeyPressed
+    private void campoDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescricaoKeyPressed
         if(evt.getKeyCode() == evt.VK_ENTER){
             botaoPesquisar.requestFocus();
         }
-    }//GEN-LAST:event_campoNomeProduto1KeyPressed
-
-    private void campoCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCodigoKeyPressed
-        if(evt.getKeyCode() == evt.VK_ENTER){
-            if (campoCodigo.getText().equals("")){
-                campoNomeProduto1.requestFocus();
-            }
-       }
-    }//GEN-LAST:event_campoCodigoKeyPressed
+    }//GEN-LAST:event_campoDescricaoKeyPressed
 
     private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
         limpar.apagaDadosDaTabela(tabelaProcotolos);
-        if (campoNomeProduto1.getText().equals("")){
+        if (campoDescricao.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Digite alguma informação para pesquisar!");
         }else{ 
             
-//            Conexao co = new Conexao();
-//            co.verificaConexaoOracle("Oracle", "1521", "sup_infomed","gps$$$","10.20.100.23","ATEND");
-            ControllerJanelaProtocolos controller = new ControllerJanelaProtocolos();
             controller.pesquisaProtocolos(this);
             
         }
@@ -320,14 +342,7 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
 
     private void botaoPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botaoPesquisarKeyPressed
         if(evt.getKeyCode() == evt.VK_ENTER){
-//            limpar.apagaTabelaAlteracaoProduto(this);
-//            campoTotalDeItens.setText("0");
-            String grupo = (String) campoGrupo.getSelectedItem();
-            if (grupo.equals("") && (campoCodigo.getText().equals("") && campoNomeProduto1.getText().equals(""))){
-                JOptionPane.showMessageDialog(null, "Digite um nome, um grupo ou um código de um produto!");
-            }else{            
-//                co.PesquisaProdutoParaAlteracaoPorNomeEPorGrupo(campoNomeProduto1.getText(),this,grupo,campoCodigo.getText());
-            }
+          controller.pesquisaProtocolos(this);
         }
     }//GEN-LAST:event_botaoPesquisarKeyPressed
 
@@ -380,6 +395,18 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_tabelaProcotolosMouseClicked
 
+    private void campoMensagemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoMensagemKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoMensagemKeyPressed
+
+    private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoLimparActionPerformed
+
+    private void botaoLimparKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botaoLimparKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoLimparKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -418,13 +445,16 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel PainelTabelaProdutos1;
+    private javax.swing.JButton botaoLimpar;
     private javax.swing.JButton botaoPesquisar;
     private javax.swing.JButton botaoSair;
-    public javax.swing.JTextField campoCodigo;
-    public javax.swing.JComboBox campoGrupo;
-    public javax.swing.JTextField campoNomeProduto1;
+    public javax.swing.JComboBox campoAtendente;
+    public javax.swing.JTextField campoDescricao;
+    public javax.swing.JTextField campoMensagem;
+    public javax.swing.JComboBox campoOperadora;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;

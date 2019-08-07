@@ -71,7 +71,11 @@ public class JanelaConsultaErros extends javax.swing.JInternalFrame {
             }
         });
         
-        
+        jTabbedPane1.setEnabledAt(0, false);
+        jTabbedPane1.setEnabledAt(1, false);
+        jTabbedPane1.setEnabledAt(2, false);
+        jTabbedPane1.setEnabledAt(3, true);
+        jTabbedPane1.setSelectedComponent(jPanel7);
         
     }
     
@@ -208,8 +212,9 @@ public class JanelaConsultaErros extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         campoQuantidadeRegistros = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
+        botaoPesquisaErros1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
@@ -662,22 +667,32 @@ public class JanelaConsultaErros extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel9.setText("Quantidade de registros");
 
+        botaoPesquisaErros1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        botaoPesquisaErros1.setText("Sair");
+        botaoPesquisaErros1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoPesquisaErros1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(botaoPesquisaErros)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoQuantidadeRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoPesquisaErros1)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addComponent(botaoPesquisaErros)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(campoQuantidadeRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane4)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -691,7 +706,9 @@ public class JanelaConsultaErros extends javax.swing.JInternalFrame {
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoPesquisaErros1)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consulta Erros", jPanel7);
@@ -807,6 +824,10 @@ public class JanelaConsultaErros extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_botaoPesquisaErrosActionPerformed
 
+    private void botaoPesquisaErros1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisaErros1ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_botaoPesquisaErros1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -847,6 +868,7 @@ public class JanelaConsultaErros extends javax.swing.JInternalFrame {
     private javax.swing.JButton botaoCadastrar;
     private javax.swing.JButton botaoExcluir;
     private javax.swing.JButton botaoPesquisaErros;
+    private javax.swing.JButton botaoPesquisaErros1;
     private javax.swing.JButton botaoSortear;
     public javax.swing.JComboBox<String> campoAno;
     public javax.swing.JComboBox<String> campoBanco;

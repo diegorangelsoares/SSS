@@ -1,7 +1,7 @@
 package br.com.sss.View;
 
-import br.com.model.Empresa;
-import br.com.model.Usuario;
+import br.com.sss.model.Empresa;
+import br.com.sss.model.Usuario;
 import br.com.sss.Control.ArquivoConfiguracao;
 import br.com.sss.Control.Conexao;
 import br.com.sss.Control.ConvertPasswordToMD5;
@@ -235,7 +235,7 @@ public class JanelaLogin extends javax.swing.JFrame {
                                     //String id = co.retornaIdUsuario(campoUsuario.getText());
                                     //co.inserirRegistroDeUsuario(id,campoUsuario.getText(),"Usuario logou no sistema",dataAtual.RetornaDataAtual()+" "+horaAtual.RetornaHoraAtual());
                                     JanelaPrincipal jcc = new JanelaPrincipal();
-                                    //jcc.setNomeUsuario(campoUsuario.getText());  
+                                    jcc.campoNomeUsuario.setText("Usuário: "+campoUsuario.getText());  
                                     jcc.show();
                                     this.dispose();
 

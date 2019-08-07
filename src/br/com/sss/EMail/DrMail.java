@@ -6,7 +6,7 @@ package br.com.sss.EMail;
  * @author Diego Rangel  
  */
 
-import br.com.model.Empresa;
+import br.com.sss.model.Empresa;
 import br.com.sss.Control.GeraTXT;
 import java.io.File;
 import java.util.Properties;

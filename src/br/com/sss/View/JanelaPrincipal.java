@@ -1,6 +1,6 @@
 package br.com.sss.View;
 
-import br.com.model.Empresa;
+import br.com.sss.model.Empresa;
 import br.com.sss.Control.AtualizarSistema;
 import br.com.sss.Control.ArquivoConfiguracao;
 import br.com.sss.Control.CaminhoImagem;
@@ -427,7 +427,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         campoNomePerfil.setEditable(false);
         campoNomePerfil.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         campoNomePerfil.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        campoNomePerfil.setText("Perfil:");
+        campoNomePerfil.setText("Perfil: Infomed");
 
         campoNomeUsuario.setEditable(false);
         campoNomeUsuario.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N

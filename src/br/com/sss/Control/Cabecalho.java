@@ -1,7 +1,7 @@
 
 package br.com.sss.Control;
 
-import br.com.model.Empresa;
+import br.com.sss.model.Empresa;
 
 /**
  *

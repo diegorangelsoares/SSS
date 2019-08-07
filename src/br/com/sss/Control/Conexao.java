@@ -1,10 +1,10 @@
 package br.com.sss.Control;
 
-import br.com.model.Cliente;
-import br.com.model.Empresa;
-import br.com.model.Grupo;
-import br.com.model.Usuario;
-import br.com.model.Alerta;
+import br.com.sss.model.Cliente;
+import br.com.sss.model.Empresa;
+import br.com.sss.model.Grupo;
+import br.com.sss.model.Usuario;
+import br.com.sss.model.Alerta;
 import br.com.sss.EMail.DrMail;
 import br.com.sss.View.JanelaPesquisaProtocolo;
 import br.com.sss.View.JanelaLoginAutorizacaoDialogo;

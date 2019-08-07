@@ -1,6 +1,6 @@
 package br.com.sss.Control;
 
-import br.com.model.Empresa;
+import br.com.sss.model.Empresa;
 import br.com.sss.EMail.DrMail;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
