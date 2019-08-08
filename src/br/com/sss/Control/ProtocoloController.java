@@ -187,15 +187,25 @@ public class ProtocoloController {
             return protocolosPequisados;
     }
     
-    public List buscaProtocolosDinamico( String TextoParaPesquisar, String Operadora, String Atendente){
+    public List buscaProtocolosDinamico( String TextoParaPesquisar, String mensagem, String Operadora, String Atendente){
         TextoParaPesquisar = TextoParaPesquisar.toUpperCase();
         Operadora = Operadora.toUpperCase();
         Atendente = Atendente.toUpperCase();
         String where = retornaWhereParaQeuisarVarios(TextoParaPesquisar);
+        String whereMensagem = retornaWhereParaMensagens(mensagem);
+        //String query = "select * from info_atend_255.tmp_siscon prot "+where+" order by 1 desc";
+        
+        String query = "select prot.* \n" +
+                    "       from info_atend_255.tmp_siscon prot, info_atend_255.tmp_siscon_mensagens mens\n" +
+                    "       where prot.protocolo = mens.protocolo\n" + where + " " + whereMensagem;
+        
+        
+        //System.out.println("SQL da consulta: "+query);
+        //JOptionPane.showMessageDialog(null, "SQL da consulta: "+query);
         List<Protocolo> protocolosPequisados = new ArrayList<Protocolo>();
             OracleDataSource ods;
             int quantidadeRegistros = 10;
-            TextoParaPesquisar = TextoParaPesquisar.replace(" ", "%");
+            //TextoParaPesquisar = TextoParaPesquisar.replace(" ", "%");
             //jdbc:oracle:thin:@//"+caminho+":1521/XE
             try {
                 ods = new OracleDataSource();
@@ -204,9 +214,8 @@ public class ProtocoloController {
                 ods.setUser(usuarioBanco); // [nome do usuário]
                 ods.setPassword(senhaBanco); // [senha]
                 Connection conn = ods.getConnection();
-                //JOptionPane.showMessageDialog(null, "Antes do select");
-                //PreparedStatement stmt = conn.prepareStatement("select * from info_atend_255.tmp_siscon where protocolo=1641048 order by 1 desc");  and ROWNUM <= 5
-                PreparedStatement stmt = conn.prepareStatement("select * from info_atend_255.tmp_siscon prot "+where+" order by 1 desc");
+                
+                PreparedStatement stmt = conn.prepareStatement(query);
           
                 ResultSet rs = stmt.executeQuery();
                 //Preenche os dados no formulario
@@ -300,18 +309,12 @@ public class ProtocoloController {
         String where  = "";
         
         //textoDigitado = "Tiss diego Recife";
-         
         String[] palavras = textoDigitado.split(" "); //cria array com palavra da frase
-        
         List <String> termosParaPesquisar = new ArrayList<String>();
          
         String maiorPalavra = "";
         for (String palavra : palavras) {
-//            if (palavra.length() > maiorPalavra.length()) { //se palavra atual é maior que a última maior palavra?
-//                maiorPalavra = palavra;
-//            }
             termosParaPesquisar.add("AND UPPER(prot.resumo) LIKE '%"+palavra+"%'");
-            // AND UPPER(prot.resumo) LIKE '%TextoParaPesquisar%' 
         }
         
         if (termosParaPesquisar == null){
@@ -333,11 +336,51 @@ public class ProtocoloController {
                 }else{
                     where = where + termosParaPesquisar.get(i);
                 }
-                
             }
             System.out.println("Where : "+where);
         }
         //Tem que retornar where AND UPPER(prot.resumo) LIKE '%"+palavra+"%'
+        System.out.println("Where : "+where);
+        return where;
+    }
+    
+    public String retornaWhereParaMensagens (String textoDigitado){
+        
+        String where  = "";
+        
+        //textoDigitado = "Tiss diego Recife";
+        String[] palavras = textoDigitado.split(" "); //cria array com palavra da frase
+        List <String> termosParaPesquisar = new ArrayList<String>();
+         
+        String maiorPalavra = "";
+        for (String palavra : palavras) {
+            termosParaPesquisar.add("AND UPPER(mens.mensagem) LIKE '%"+palavra+"%'");
+        }
+        
+        if (termosParaPesquisar == null){
+            //System.out.println("Não digitou nada!");
+        }else{
+            for (int i = 0; i < termosParaPesquisar.size(); i++) {
+                //System.out.println("Termo: "+termosParaPesquisar.get(i));
+            }
+        }
+
+        if (palavras.length == 1){
+            where = " where "+ termosParaPesquisar.get(0).replace("AND ", "");
+            System.out.println("Where : "+where);
+        }else{
+            where = " where ";
+            for (int i = 0; i < termosParaPesquisar.size(); i++) {
+                if (i == 0){
+                    where = where + termosParaPesquisar.get(i).replace("AND ", "");
+                }else{
+                    where = where + termosParaPesquisar.get(i);
+                }
+            }
+            System.out.println("Where : "+where);
+        }
+        //Tem que retornar where AND UPPER(prot.resumo) LIKE '%"+palavra+"%'
+        System.out.println("Where : "+where);
         return where;
     }
     

@@ -205,7 +205,7 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
         PainelTabelaProdutos1Layout.setVerticalGroup(
             PainelTabelaProdutos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelTabelaProdutos1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelTabelaProdutos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -330,10 +330,19 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
 
     private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
         limpar.apagaDadosDaTabela(tabelaProcotolos);
-        if (campoDescricao.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Digite alguma informação para pesquisar!");
+        String atendente = (String) campoAtendente.getSelectedItem();
+        String operadora = (String) campoOperadora.getSelectedItem();
+        if (atendente == null){
+            atendente = "";
+        }
+        if (operadora == null){
+            operadora = "";
+        }
+        if (campoDescricao.getText().equals("") && campoMensagem.getText().equals("") && atendente.equals("") && operadora.equals("")){
+            JOptionPane.showMessageDialog(null, "Preencha algum campo para pesquisar!");
         }else{ 
-            
+            campoDescricao.setText(campoDescricao.getText().toUpperCase());
+            campoMensagem.setText(campoMensagem.getText().toUpperCase());
             controller.pesquisaProtocolos(this);
             
         }
@@ -400,7 +409,12 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoMensagemKeyPressed
 
     private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparActionPerformed
-        // TODO add your handling code here:
+        campoDescricao.setText("");
+        campoMensagem.setText("");
+        campoOperadora.setSelectedItem("");
+        campoAtendente.setSelectedItem("");
+        limpar.apagaDadosDaTabela(tabelaProcotolos);
+        campoDescricao.requestFocus();
     }//GEN-LAST:event_botaoLimparActionPerformed
 
     private void botaoLimparKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botaoLimparKeyPressed

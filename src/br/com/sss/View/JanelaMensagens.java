@@ -97,6 +97,11 @@ public class JanelaMensagens extends javax.swing.JDialog {
         botaoMenos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jPanel2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -125,29 +130,30 @@ public class JanelaMensagens extends javax.swing.JDialog {
 
         tabelaMensagens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Data", "De", "Para", "Mensagem"
+                "Data", "Resurco", "Mensagem"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tabelaMensagens.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tabelaMensagensKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabelaMensagens);
         if (tabelaMensagens.getColumnModel().getColumnCount() > 0) {
             tabelaMensagens.getColumnModel().getColumn(0).setPreferredWidth(50);
             tabelaMensagens.getColumnModel().getColumn(1).setPreferredWidth(50);
-            tabelaMensagens.getColumnModel().getColumn(2).setPreferredWidth(50);
-            tabelaMensagens.getColumnModel().getColumn(3).setPreferredWidth(400);
+            tabelaMensagens.getColumnModel().getColumn(2).setPreferredWidth(400);
         }
 
         botaoMais.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -259,9 +265,21 @@ public class JanelaMensagens extends javax.swing.JDialog {
 
     private void jPanel2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel2KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE){
-            this.setVisible(false);
+            this.dispose();
         }
     }//GEN-LAST:event_jPanel2KeyPressed
+
+    private void tabelaMensagensKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaMensagensKeyPressed
+        if(evt.getKeyCode() == evt.VK_ESCAPE){
+            this.dispose();
+        }
+    }//GEN-LAST:event_tabelaMensagensKeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if(evt.getKeyCode() == evt.VK_ESCAPE){
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
@@ -314,6 +332,6 @@ public class JanelaMensagens extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tabelaMensagens;
+    public javax.swing.JTable tabelaMensagens;
     // End of variables declaration//GEN-END:variables
 }

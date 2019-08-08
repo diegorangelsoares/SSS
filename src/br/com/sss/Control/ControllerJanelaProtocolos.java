@@ -33,16 +33,25 @@ public class ControllerJanelaProtocolos {
         }
         List<Protocolo> protocolos = null;
         if (operadora.equals("") && atendente.equals("")){
-            protocolos = protocoloController.buscaProtocolosSimples(j.campoDescricao.getText());
+            System.out.println("Consulta buscaProtocolosDinamico");
+            //JOptionPane.showMessageDialog(null, "Consulta simples");
+            //protocolos = protocoloController.buscaProtocolosSimples(j.campoDescricao.getText());
+            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), j.campoMensagem.getText(), operadora, atendente);
         }
         if (!operadora.equals("") && atendente.equals("")){
-            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), operadora, atendente);
+            System.out.println("Consulta buscaProtocolosDinamico");
+            //JOptionPane.showMessageDialog(null, "Consulta buscaProtocolosDinamico");
+            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), j.campoMensagem.getText(), operadora, atendente);
         }
         if (operadora.equals("") && !atendente.equals("")){
-            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), operadora, atendente);
+            System.out.println("Consulta buscaProtocolosDinamico");
+            //JOptionPane.showMessageDialog(null, "Consulta buscaProtocolosDinamico");
+            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), j.campoMensagem.getText(), operadora, atendente);
         }
         if (!operadora.equals("") && !atendente.equals("")){
-            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), operadora, atendente);
+            System.out.println("Consulta buscaProtocolosDinamico");
+            //JOptionPane.showMessageDialog(null, "Consulta buscaProtocolosDinamico");
+            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), j.campoMensagem.getText(), operadora, atendente);
         }
         if (protocolos == null){
             JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum protocolo com estas informações!");

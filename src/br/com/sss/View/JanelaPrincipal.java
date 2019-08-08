@@ -28,11 +28,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractAction;
 import javax.swing.Icon;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -120,6 +124,21 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 //        this.setIconImage(imagemTitulo); 
         
         areaTrabalho.requestFocus();
+        
+        //adicionar funcao de atalho no confirma venda
+        InputMap inputMap = this.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),"forward");
+        this.getRootPane().setInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW, inputMap);
+        this.getRootPane().getActionMap().put("forward", new AbstractAction(){
+            private static final long serialVersionUID = 1L;
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                int Confirm = JOptionPane.showConfirmDialog(null,"Tem certeza que deseja sair do sistema?","Sim ou Não", JOptionPane.YES_NO_OPTION);
+                if (Confirm == 0){
+                    System.exit(0);
+                }
+            }
+        });
         
         //Verifica as configuracoes das abas e ativa/desativa
         //co.VerificaConfiguracaoDeJanela(this);
@@ -723,7 +742,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenuBar2.add(menuRelatorios);
 
         menuFerramentas.setText("Ferramentas");
-        menuFerramentas.setEnabled(false);
         menuFerramentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         menuConfig.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -737,6 +755,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         menuGraficos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         menuGraficos.setText("Gráficos");
+        menuGraficos.setEnabled(false);
         menuGraficos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuGraficosActionPerformed(evt);
