@@ -5,6 +5,7 @@
  */
 package br.com.sss.Control;
 
+import br.com.sss.EMail.DrMail;
 import br.com.sss.model.Protocolo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,6 +29,9 @@ public class ProtocoloController {
     String servicoBanco = "ATEND";
     String usuarioBanco = "sup_infomed";
     String senhaBanco = "gps$$$";
+    public GeraTXT GeradorTXT = new GeraTXT();
+    MensagemErro mensagemErro = new MensagemErro();
+    public DrMail email = new DrMail();
     
     public Connection con1;
     
@@ -123,8 +127,9 @@ public class ProtocoloController {
                 //JOptionPane.showMessageDialog(null, "Fechou conexao");
             }catch( SQLException e){ //trata os erros SQL
                 //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
-                JOptionPane.showMessageDialog(null,"Erro:\n\n"
-                                                 + e.getMessage());
+//                JOptionPane.showMessageDialog(null,"Erro:\n\n"
+//                                                 + e.getMessage());
+                criaArquivoErroEEnviaEmail(e, "buscaProtocolosComOperadoraComAtendente");
             }    
             //JOptionPane.showMessageDialog(null, "fim antes do return");
             return protocolosPequisados;
@@ -180,8 +185,9 @@ public class ProtocoloController {
                 //JOptionPane.showMessageDialog(null, "Fechou conexao");
             }catch( SQLException e){ //trata os erros SQL
                 //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
-                JOptionPane.showMessageDialog(null,"Erro:\n\n"
-                                                 + e.getMessage());
+//                JOptionPane.showMessageDialog(null,"Erro:\n\n"
+//                                                 + e.getMessage());
+                criaArquivoErroEEnviaEmail(e, "buscaProtocolosSimples");
             }    
             //JOptionPane.showMessageDialog(null, "fim antes do return");
             return protocolosPequisados;
@@ -192,15 +198,21 @@ public class ProtocoloController {
         Operadora = Operadora.toUpperCase();
         Atendente = Atendente.toUpperCase();
         String where = retornaWhereParaQeuisarVarios(TextoParaPesquisar);
+        if (where.equals("")){
+            
+        }
         String whereMensagem = retornaWhereParaMensagens(mensagem);
         //String query = "select * from info_atend_255.tmp_siscon prot "+where+" order by 1 desc";
         
-        String query = "select prot.* \n" +
+        String query = "select distinct(prot.protocolo) , prot.DATAENTRADA, prot.cliente, prot.resumo \n" +
                     "       from info_atend_255.tmp_siscon prot, info_atend_255.tmp_siscon_mensagens mens\n" +
-                    "       where prot.protocolo = mens.protocolo\n" + where + " " + whereMensagem;
+                    "       where prot.protocolo = mens.protocolo "
+                  + " and upper(prot.cliente) like '%"+Operadora+"%' " +
+                    "       and upper(prot.Atendente) like '%"+Atendente+"%'"
+                  + "" + where + " " + whereMensagem + " group by prot.protocolo, prot.DATAENTRADA, prot.cliente, prot.resumo";
         
         
-        //System.out.println("SQL da consulta: "+query);
+        System.out.println("SQL da consulta: "+query);
         //JOptionPane.showMessageDialog(null, "SQL da consulta: "+query);
         List<Protocolo> protocolosPequisados = new ArrayList<Protocolo>();
             OracleDataSource ods;
@@ -222,26 +234,26 @@ public class ProtocoloController {
                 //JOptionPane.showMessageDialog(null, "Antes do while");
                 while (rs.next()){
                     String PROTOCOLO = rs.getString("PROTOCOLO");
-                    String SISTEMA = rs.getString("SISTEMA");
-                    String RECURSO = rs.getString("RECURSO");
-                    String PESSOA = rs.getString("PESSOA");
+                    //String SISTEMA = rs.getString("SISTEMA");
+//                    String RECURSO = rs.getString("RECURSO");
+//                    String PESSOA = rs.getString("PESSOA");
                     String RESUMO = rs.getString("RESUMO");
-                    String VERSAO = rs.getString("VERSAO");
+//                    String VERSAO = rs.getString("VERSAO");
                     String DATAENTRADA = rs.getString("DATAENTRADA");
-                    String SMS = rs.getString("SMS");
-                    String CLASSIFICACAO = rs.getString("CLASSIFICACAO");
-                    String SITUACAO = rs.getString("SITUACAO");
-                    String RESPONSAVEL = rs.getString("RESPONSAVEL");
+//                    String SMS = rs.getString("SMS");
+//                    String CLASSIFICACAO = rs.getString("CLASSIFICACAO");
+//                    String SITUACAO = rs.getString("SITUACAO");
+//                    String RESPONSAVEL = rs.getString("RESPONSAVEL");
                     String CLIENTE = rs.getString("CLIENTE");
-                    String SLA = rs.getString("SLA");
-                    String USERALTERACAO = rs.getString("USERALTERACAO");
-                    String HOMOLOGAR = rs.getString("HOMOLOGAR");
-                    String ULTIMAALTERACAO = rs.getString("ULTIMAALTERACAO");
-                    String PRAZOENTREGA = rs.getString("PRAZOENTREGA");
-                    String ATEND = rs.getString("ATEND");
-                    String ATENDENTE = rs.getString("ATENDENTE");
-                    String PRAZOSLA = rs.getString("PRAZOSLA");
-                    Protocolo protocolo = new Protocolo(0,PROTOCOLO,SISTEMA,RECURSO,PESSOA,RESUMO,VERSAO,DATAENTRADA,SMS,CLASSIFICACAO,SITUACAO,RESPONSAVEL,CLIENTE,SLA,USERALTERACAO,HOMOLOGAR,ULTIMAALTERACAO,PRAZOENTREGA,ATEND,ATENDENTE,PRAZOSLA);
+//                    String SLA = rs.getString("SLA");
+//                    String USERALTERACAO = rs.getString("USERALTERACAO");
+//                    String HOMOLOGAR = rs.getString("HOMOLOGAR");
+//                    String ULTIMAALTERACAO = rs.getString("ULTIMAALTERACAO");
+//                    String PRAZOENTREGA = rs.getString("PRAZOENTREGA");
+//                    String ATEND = rs.getString("ATEND");
+//                    String ATENDENTE = rs.getString("ATENDENTE");
+//                    String PRAZOSLA = rs.getString("PRAZOSLA");
+                    Protocolo protocolo = new Protocolo(0,PROTOCOLO,"","","",RESUMO,"",DATAENTRADA,"","","","",CLIENTE,"","","","","","","","");
                     protocolosPequisados.add(protocolo);
                 }
                 //JOptionPane.showMessageDialog(null, "Fim do while");
@@ -249,8 +261,9 @@ public class ProtocoloController {
                 //JOptionPane.showMessageDialog(null, "Fechou conexao");
             }catch( SQLException e){ //trata os erros SQL
                 //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
-                JOptionPane.showMessageDialog(null,"Erro:\n\n"
-                                                 + e.getMessage());
+//                JOptionPane.showMessageDialog(null,"Erro:\n\n"
+//                                                 + e.getMessage());
+                criaArquivoErroEEnviaEmail(e, "buscaProtocolosDinamico");
             }    
             //JOptionPane.showMessageDialog(null, "fim antes do return");
             return protocolosPequisados;
@@ -274,8 +287,9 @@ public class ProtocoloController {
                 }
             }catch( SQLException e){ //trata os erros SQL
                 //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
-                JOptionPane.showMessageDialog(null,"Erro:\n\n"
-                                                 + e.getMessage());
+//                JOptionPane.showMessageDialog(null,"Erro:\n\n"
+//                                                 + e.getMessage());
+                criaArquivoErroEEnviaEmail(e, "retornaAtendentesDosProtocolos");
             }    
             return atendentes;
     }
@@ -298,8 +312,9 @@ public class ProtocoloController {
                 }
             }catch( SQLException e){ //trata os erros SQL
                 //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
-                JOptionPane.showMessageDialog(null,"Erro:\n\n"
-                                                 + e.getMessage());
+//                JOptionPane.showMessageDialog(null,"Erro:\n\n"
+//                                                 + e.getMessage());
+                criaArquivoErroEEnviaEmail(e, "retornaOperadorasDosProtocolos");
             }    
             return clientes;
     }
@@ -326,13 +341,13 @@ public class ProtocoloController {
         }
 
         if (palavras.length == 1){
-            where = " where "+ termosParaPesquisar.get(0).replace("AND ", "");
+            where = " "+ termosParaPesquisar.get(0);//.replace("AND ", "");
             System.out.println("Where : "+where);
         }else{
-            where = " where ";
+            //where = " where ";
             for (int i = 0; i < termosParaPesquisar.size(); i++) {
                 if (i == 0){
-                    where = where + termosParaPesquisar.get(i).replace("AND ", "");
+                    where = where + termosParaPesquisar.get(i);//.replace("AND ", "");
                 }else{
                     where = where + termosParaPesquisar.get(i);
                 }
@@ -366,13 +381,13 @@ public class ProtocoloController {
         }
 
         if (palavras.length == 1){
-            where = " where "+ termosParaPesquisar.get(0).replace("AND ", "");
+            where = "  "+ termosParaPesquisar.get(0);//.replace("AND ", "");
             System.out.println("Where : "+where);
         }else{
-            where = " where ";
+            //where = " where ";
             for (int i = 0; i < termosParaPesquisar.size(); i++) {
                 if (i == 0){
-                    where = where + termosParaPesquisar.get(i).replace("AND ", "");
+                    where = where + termosParaPesquisar.get(i);//.replace("AND ", "");
                 }else{
                     where = where + termosParaPesquisar.get(i);
                 }
@@ -382,6 +397,14 @@ public class ProtocoloController {
         //Tem que retornar where AND UPPER(prot.resumo) LIKE '%"+palavra+"%'
         System.out.println("Where : "+where);
         return where;
+    }
+    
+    public void criaArquivoErroEEnviaEmail(SQLException ex, String nomeFuncao){
+        String nomeDoArquivo = GeradorTXT.GeraTxtDeErro("Erro Cmdo SQL " + ex.getMessage()+" Ao "+nomeFuncao);
+        String textoDoEmailDeErro = "Erro no Comando SQL: " + ex.getMessage()+" Ao executar a função: "+nomeFuncao+"\n\nVersão do Sistema: "+"1.0.0.1";
+        //mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso( "Erro - Contate o desenvolvedor!");
+        mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Erro - Contate o desenvolvedor!", "Desculpe-me pelo Erro","erro");
+        //email.enviarEmailDoErro("INFOMED","Registro de erro do sistema" , nomeDoArquivo,"1.0.0.1");
     }
     
     

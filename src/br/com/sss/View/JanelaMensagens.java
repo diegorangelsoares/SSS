@@ -9,10 +9,19 @@ import br.com.sss.Control.CaminhoImagem;
 import br.com.sss.Control.Clean;
 import br.com.sss.Control.Conexao;
 import br.com.sss.Control.TextAreaCellRenderer;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.net.URL;
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -22,9 +31,8 @@ public class JanelaMensagens extends javax.swing.JDialog {
 
     CaminhoImagem caminhoImagemIcone = new CaminhoImagem();
     Clean limpar = new Clean();
-    Conexao co = new Conexao();
+    //Conexao co = new Conexao();
     StringBuilder str = new StringBuilder();
-    String texto = "Boa tarde, \n Segue os dados conforme solicitado. \n ajsndkjansdkjas \n Att \n";
     public int alturaDaLinha = 100;
     
     /**
@@ -37,6 +45,11 @@ public class JanelaMensagens extends javax.swing.JDialog {
         super.setLocationRelativeTo(null);
         super.setResizable(true);
         
+        //Muda icone da Janela
+//        URL url = this.getClass().getResource("/br.com.sss.Imagem/ICONE_DR_3.png");  
+//        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
+//        this.setIconImage(imagemTitulo); 
+        
          //colocar barra de rolagem na tabela
 //        tabelaMensagens.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 //        
@@ -44,38 +57,33 @@ public class JanelaMensagens extends javax.swing.JDialog {
 //        tabelaMensagens.setRowSelectionAllowed(true);
         
 //        co.atualizaGrupoNaJanelaAlteracao(this);
-
+/**
         tabelaMensagens.setRowHeight(alturaDaLinha); 
         str.append("<html>");
         str.append(texto.replaceAll("\n","<br>"));
         str.append("</html>");
-
-        str.toString();
-        /**
-        tabelaMensagens.setValueAt("12/08/2019", 0, 0);
-        tabelaMensagens.setValueAt("12/08/2019", 1, 0);
-        tabelaMensagens.setValueAt("12/08/2019", 2, 0);
-        tabelaMensagens.setValueAt("12/08/2019", 3, 0);
+*/
+        //str.toString();
         
-        tabelaMensagens.setValueAt("Diego", 0, 1);
-        tabelaMensagens.setValueAt("Unimed", 1, 1);
-        tabelaMensagens.setValueAt("Diego", 2, 1);
-        tabelaMensagens.setValueAt("Unimed", 3, 1);
         
-        tabelaMensagens.setValueAt("Unimed", 0, 2);
-        tabelaMensagens.setValueAt("Diego", 1, 2);
-        tabelaMensagens.setValueAt("Unimed", 2, 2);
-        tabelaMensagens.setValueAt("Diego", 3, 2);
+        //tabelaMensagens.getColumnModel().getColumn(3).setWidth(100);
         
-        //MEnsagens
-        tabelaMensagens.setValueAt(str.toString(), 0, 3);
-        tabelaMensagens.setValueAt(str.toString(), 1, 3);
-        tabelaMensagens.setValueAt(str.toString(), 2, 3);
-        tabelaMensagens.setValueAt(str.toString(), 3, 3);
-        * */
-        
-        tabelaMensagens.getColumnModel().getColumn(3).setWidth(100);
+        //adicionar funcao de atalho no confirma venda
+        InputMap inputMap = this.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),"forward");
+        this.getRootPane().setInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW, inputMap);
+        this.getRootPane().getActionMap().put("forward", new AbstractAction(){
+            private static final long serialVersionUID = 1L;
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                fechaJanela();
+            }
+        });
 //        
+    }
+    
+    public void fechaJanela(){
+        this.dispose();
     }
 
     /**
@@ -109,8 +117,8 @@ public class JanelaMensagens extends javax.swing.JDialog {
             }
         });
 
+        campoProtocolo.setEditable(false);
         campoProtocolo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        campoProtocolo.setEnabled(false);
         campoProtocolo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 campoProtocoloKeyPressed(evt);
@@ -133,7 +141,7 @@ public class JanelaMensagens extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Data", "Resurco", "Mensagem"
+                "Data", "Recurso", "Mensagem"
             }
         ) {
             boolean[] canEdit = new boolean [] {

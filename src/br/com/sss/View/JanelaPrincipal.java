@@ -106,17 +106,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         campoData.setText(dataAtual.RetornaDataAtual());
         
         //Preenche o número da versão na tela inicial
-        campoVersao.setText("Versão: 1.0.0.1");
+        campoVersao.setText("Versão: 1.0.0.3");
         
-        //Verifica a licença e preenche a validade em dias
+        //Preenche a licença
+        campoLicenca.setText("Licença: Teste");
         
-     
-       
-                
-        //Coloca o papel de parede conforme perfil salvo no banco
-//        co.mudaPapelDeParedePeloPerfil(this,empresaSalvaNoBD.getPerfil());
-        //Coloca a logo DR na tela principal
-//        co.colocaLogoDrNaTelaPrincipal(this,empresaSalv|aNoBD.getPerfil());
+        campoMensagem.setText("Busca de protocolos");
        
         //Muda icone da Janela
         URL url = this.getClass().getResource(caminhoImagemIcone.getCaminhoJanelaPrincipal());

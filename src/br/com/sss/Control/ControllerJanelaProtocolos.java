@@ -58,7 +58,7 @@ public class ControllerJanelaProtocolos {
         }else{
             for (int i = 0; i < protocolos.size(); i++) {
                 javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel)j.tabelaProcotolos.getModel();
-                dtm.addRow(new Object[]{protocolos.get(i).getProtocolo(), protocolos.get(i).getCliente(), protocolos.get(i).getResumo()}); 
+                dtm.addRow(new Object[]{protocolos.get(i).getProtocolo(), protocolos.get(i).getDataentrada() ,protocolos.get(i).getCliente(), protocolos.get(i).getResumo()}); 
             }
              
         }

@@ -5,6 +5,7 @@ package br.com.sss.View;
 import br.com.sss.Control.CaminhoImagem;
 import br.com.sss.Control.Clean;
 import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerJanelaMensagens;
 import br.com.sss.Control.ControllerJanelaProtocolos;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -48,11 +49,13 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
 //        tabelaProcotolos.setColumnSelectionAllowed(true);  
 //        tabelaProcotolos.setRowSelectionAllowed(true);
         
-        /**
-        tabelaProcotolos.setValueAt("1264555", 0, 0);
-        tabelaProcotolos.setValueAt("Unimed", 0, 1);
-        tabelaProcotolos.setValueAt("SIB Flex", 0, 2);
         
+//        tabelaProcotolos.setValueAt("1264555", 0, 0);
+//        tabelaProcotolos.setValueAt("Unimed", 0, 1);
+//        tabelaProcotolos.setValueAt("SIB Flex", 0, 2);
+//        javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel)tabelaProcotolos.getModel();
+//        dtm.addRow(new Object[]{"1264555", "Unimed"}); 
+        /**
         tabelaProcotolos.setValueAt("1255445", 1, 0);
         tabelaProcotolos.setValueAt("Unimed", 1, 1);
         tabelaProcotolos.setValueAt("Monitoramento TISS", 1, 2);
@@ -144,17 +147,18 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Protocolo", "Operadora", "Resumo"
+                "Protocolo", "Data", "Operadora", "Resumo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tabelaProcotolos.setColumnSelectionAllowed(true);
         tabelaProcotolos.setSurrendersFocusOnKeystroke(true);
         tabelaProcotolos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -167,13 +171,14 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tabelaProcotolos);
+        tabelaProcotolos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tabelaProcotolos.getColumnModel().getColumnCount() > 0) {
             tabelaProcotolos.getColumnModel().getColumn(0).setResizable(false);
             tabelaProcotolos.getColumnModel().getColumn(0).setPreferredWidth(100);
             tabelaProcotolos.getColumnModel().getColumn(1).setResizable(false);
-            tabelaProcotolos.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tabelaProcotolos.getColumnModel().getColumn(2).setResizable(false);
-            tabelaProcotolos.getColumnModel().getColumn(2).setPreferredWidth(800);
+            tabelaProcotolos.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tabelaProcotolos.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tabelaProcotolos.getColumnModel().getColumn(3).setPreferredWidth(800);
         }
 
         botaoSair.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -392,13 +397,24 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
 
     private void tabelaProcotolosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProcotolosMouseClicked
         if (evt.getClickCount() == 2) {
+            //JOptionPane.showMessageDialog(null, "Clicou 2 vezes!");
             int linhaSelecionada = tabelaProcotolos.getSelectedRow();
             int colunaSelecionada = 0;
             String Protocolo = (String) tabelaProcotolos.getValueAt(linhaSelecionada, colunaSelecionada);
+            //JOptionPane.showMessageDialog(null, "Pegou valor da coluna: "+colunaSelecionada+" Linha: "+linhaSelecionada + " Exibis mensagens do protocolo "+Protocolo);
             if(!Protocolo.equals("")){
+                //JOptionPane.showMessageDialog(null, "Criando Janela");
                 JanelaMensagens Jpg = new JanelaMensagens(null, rootPaneCheckingEnabled);
+                //JOptionPane.showMessageDialog(null, "Janela criada");
                 Jpg.campoProtocolo.setText(Protocolo);
+                ControllerJanelaMensagens controllerJanelaMensagens = new ControllerJanelaMensagens();
+                //JOptionPane.showMessageDialog(null, "Alimentadno as mensagens da Janela");
+                controllerJanelaMensagens.preencheMensagensDoProtocolo(Jpg,Protocolo);
+                //JOptionPane.showMessageDialog(null, "Abrindo Janela");
                 Jpg.show();
+            }else{
+                JOptionPane.showMessageDialog(null, "Sem Mensagens!");
+                        
             }
         }
         
