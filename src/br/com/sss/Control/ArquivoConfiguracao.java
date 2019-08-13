@@ -30,12 +30,39 @@ public class ArquivoConfiguracao {
     MensagemErro mensagemErro = new MensagemErro();
     
     public ArquivoConfiguracao(){
-        criaPastaDentroDoDSistema("NFE");
+       // criaPastaDentroDoDSistema("NFE");
     }
     
     public String verificaSistemaOperacional(){
         nomeSistemaOperacional = System.getProperty("os.name").toUpperCase();
         return nomeSistemaOperacional;
+    }
+    
+    public boolean verificaSeTemArquivoNomes(){
+            File arquivo = new File("C:/DSistema/Nomes.dr"); // ajfilho é uma pasta!
+            if (!arquivo.exists()) {
+               //JOptionPane.showMessageDialog(null, "Diretório não existe!");
+               criaArquivoNomes ();
+               return false;
+            } else {
+               //JOptionPane.showMessageDialog(null, "Diretório já existente!");
+               return true;
+            }
+    }
+    
+    public void criaArquivoNomes (){
+        String caminhoBD = "localhost";
+            
+            //renovar nova sequencia colocando o escolhido no inicio
+            String nomeDoArquivo = "c:\\DSistema\\Nomes.dr";
+            BufferedWriter buffWrite = null; 
+            try {                
+                buffWrite = new BufferedWriter(new FileWriter(nomeDoArquivo));                
+                buffWrite.close();
+            } catch (IOException ex) {
+                mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso( "O Windows não deixou criar o arquivo Nomes.dr!","Falta Informação","erro");
+            }
+            
     }
     
     public void criaPastaDentroDoDSistema(String nomePasta){
@@ -776,6 +803,24 @@ public class ArquivoConfiguracao {
             //XXXXXXXXXXXXXXXnull, "O Windows não deixou criar o arquivo do Caminho BD!");
             mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("O Windows não deixou alterar Nomes.dr!", "Falta informação","erro");
         } 
+    }
+    
+    public void criArquivoDeSelect (String query){            
+            //renovar nova sequencia colocando o escolhido no inicio
+            String nomeDoArquivo = "c:\\DSistema\\select.txt";
+            BufferedWriter buffWrite = null; 
+            try {
+                buffWrite = new BufferedWriter(new FileWriter(nomeDoArquivo));
+
+                buffWrite.write(query);
+                buffWrite.newLine();
+                buffWrite.close();
+            } catch (IOException ex) {
+                mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso( "O Windows não deixou criar o arquivo ConfiguracaoNFE.ini!","Falta Informação","erro");
+            }
+                
+                //mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso( "O Windows não deixou criar o arquivo ConfiguracaoNFE.ini!","Falta Informação","erro");
+            
     }
     
 }

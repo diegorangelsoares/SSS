@@ -1,4 +1,7 @@
+package Testes;
 
+
+import br.com.sss.Control.ProtocoloController;
 import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.JTextArea;

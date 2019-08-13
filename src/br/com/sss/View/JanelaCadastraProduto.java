@@ -16,8 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import br.com.sss.Control.GeradorPDF;
 import br.com.sss.Control.MensagemErro;
-import com.itextpdf.text.DocumentException;
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+//import com.itextpdf.text.DocumentException;
+//import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *

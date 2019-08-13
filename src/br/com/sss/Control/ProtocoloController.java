@@ -35,6 +35,8 @@ public class ProtocoloController {
     
     public Connection con1;
     
+    ArquivoConfiguracao arquivoConfiguracao = new ArquivoConfiguracao();
+    
     public Statement AbreConexaoBancoOracle(){
         OracleDataSource ods;
         try {
@@ -211,7 +213,7 @@ public class ProtocoloController {
                     "       and upper(prot.Atendente) like '%"+Atendente+"%'"
                   + "" + where + " " + whereMensagem + " group by prot.protocolo, prot.DATAENTRADA, prot.cliente, prot.resumo";
         
-        
+        arquivoConfiguracao.criArquivoDeSelect(query);
         System.out.println("SQL da consulta: "+query);
         //JOptionPane.showMessageDialog(null, "SQL da consulta: "+query);
         List<Protocolo> protocolosPequisados = new ArrayList<Protocolo>();
@@ -264,6 +266,82 @@ public class ProtocoloController {
 //                JOptionPane.showMessageDialog(null,"Erro:\n\n"
 //                                                 + e.getMessage());
                 criaArquivoErroEEnviaEmail(e, "buscaProtocolosDinamico");
+            }    
+            //JOptionPane.showMessageDialog(null, "fim antes do return");
+            return protocolosPequisados;
+    }
+    
+    public List buscaProtocolosDinamicoSemMensagens( String TextoParaPesquisar, String Operadora, String Atendente){
+        TextoParaPesquisar = TextoParaPesquisar.toUpperCase();
+        Operadora = Operadora.toUpperCase();
+        Atendente = Atendente.toUpperCase();
+        String where = retornaWhereParaQeuisarVarios(TextoParaPesquisar);
+        if (where.equals("")){
+            
+        }
+        //String whereMensagem = retornaWhereParaMensagens(mensagem);
+        //String query = "select * from info_atend_255.tmp_siscon prot "+where+" order by 1 desc";
+        
+        String query = "select distinct(prot.protocolo) , prot.DATAENTRADA, prot.cliente, prot.resumo \n" +
+                    "       from info_atend_255.tmp_siscon prot\n" +
+                    "       where  "
+                  + "  upper(prot.cliente) like '%"+Operadora+"%' " +
+                    "       and upper(prot.Atendente) like '%"+Atendente+"%'"
+                  + "" + where + "  group by prot.protocolo, prot.DATAENTRADA, prot.cliente, prot.resumo";
+        
+        arquivoConfiguracao.criArquivoDeSelect(query);
+        System.out.println("SQL da consulta: "+query);
+        //JOptionPane.showMessageDialog(null, "SQL da consulta: "+query);
+        List<Protocolo> protocolosPequisados = new ArrayList<Protocolo>();
+            OracleDataSource ods;
+            int quantidadeRegistros = 10;
+            //TextoParaPesquisar = TextoParaPesquisar.replace(" ", "%");
+            //jdbc:oracle:thin:@//"+caminho+":1521/XE
+            try {
+                ods = new OracleDataSource();
+                String porta = "1521";
+                ods.setURL("jdbc:oracle:thin:@//"+enderecoBanco+":"+porta+"/"+servicoBanco+""); // jdbc:oracle:thin@//[nome do host]:[porta]/[nome do serviço de BD]
+                ods.setUser(usuarioBanco); // [nome do usuário]
+                ods.setPassword(senhaBanco); // [senha]
+                Connection conn = ods.getConnection();
+                
+                PreparedStatement stmt = conn.prepareStatement(query);
+          
+                ResultSet rs = stmt.executeQuery();
+                //Preenche os dados no formulario
+                //JOptionPane.showMessageDialog(null, "Antes do while");
+                while (rs.next()){
+                    String PROTOCOLO = rs.getString("PROTOCOLO");
+                    //String SISTEMA = rs.getString("SISTEMA");
+//                    String RECURSO = rs.getString("RECURSO");
+//                    String PESSOA = rs.getString("PESSOA");
+                    String RESUMO = rs.getString("RESUMO");
+//                    String VERSAO = rs.getString("VERSAO");
+                    String DATAENTRADA = rs.getString("DATAENTRADA");
+//                    String SMS = rs.getString("SMS");
+//                    String CLASSIFICACAO = rs.getString("CLASSIFICACAO");
+//                    String SITUACAO = rs.getString("SITUACAO");
+//                    String RESPONSAVEL = rs.getString("RESPONSAVEL");
+                    String CLIENTE = rs.getString("CLIENTE");
+//                    String SLA = rs.getString("SLA");
+//                    String USERALTERACAO = rs.getString("USERALTERACAO");
+//                    String HOMOLOGAR = rs.getString("HOMOLOGAR");
+//                    String ULTIMAALTERACAO = rs.getString("ULTIMAALTERACAO");
+//                    String PRAZOENTREGA = rs.getString("PRAZOENTREGA");
+//                    String ATEND = rs.getString("ATEND");
+//                    String ATENDENTE = rs.getString("ATENDENTE");
+//                    String PRAZOSLA = rs.getString("PRAZOSLA");
+                    Protocolo protocolo = new Protocolo(0,PROTOCOLO,"","","",RESUMO,"",DATAENTRADA,"","","","",CLIENTE,"","","","","","","","");
+                    protocolosPequisados.add(protocolo);
+                }
+                //JOptionPane.showMessageDialog(null, "Fim do while");
+                //FechaConexaoBanco(conn);
+                //JOptionPane.showMessageDialog(null, "Fechou conexao");
+            }catch( SQLException e){ //trata os erros SQL
+                //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+//                JOptionPane.showMessageDialog(null,"Erro:\n\n"
+//                                                 + e.getMessage());
+                criaArquivoErroEEnviaEmail(e, "buscaProtocolosDinamicoSemMensagens");
             }    
             //JOptionPane.showMessageDialog(null, "fim antes do return");
             return protocolosPequisados;

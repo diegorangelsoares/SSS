@@ -32,26 +32,33 @@ public class ControllerJanelaProtocolos {
             atendente = "";
         }
         List<Protocolo> protocolos = null;
-        if (operadora.equals("") && atendente.equals("")){
+        if(j.campoMensagem.getText().equals("")){
             System.out.println("Consulta buscaProtocolosDinamico");
             //JOptionPane.showMessageDialog(null, "Consulta simples");
             //protocolos = protocoloController.buscaProtocolosSimples(j.campoDescricao.getText());
-            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), j.campoMensagem.getText(), operadora, atendente);
-        }
-        if (!operadora.equals("") && atendente.equals("")){
-            System.out.println("Consulta buscaProtocolosDinamico");
-            //JOptionPane.showMessageDialog(null, "Consulta buscaProtocolosDinamico");
-            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), j.campoMensagem.getText(), operadora, atendente);
-        }
-        if (operadora.equals("") && !atendente.equals("")){
-            System.out.println("Consulta buscaProtocolosDinamico");
-            //JOptionPane.showMessageDialog(null, "Consulta buscaProtocolosDinamico");
-            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), j.campoMensagem.getText(), operadora, atendente);
-        }
-        if (!operadora.equals("") && !atendente.equals("")){
-            System.out.println("Consulta buscaProtocolosDinamico");
-            //JOptionPane.showMessageDialog(null, "Consulta buscaProtocolosDinamico");
-            protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), j.campoMensagem.getText(), operadora, atendente);
+            protocolos = protocoloController.buscaProtocolosDinamicoSemMensagens(j.campoDescricao.getText(), operadora, atendente);
+        }else{
+            if (operadora.equals("") && atendente.equals("")){
+                System.out.println("Consulta buscaProtocolosDinamico");
+                //JOptionPane.showMessageDialog(null, "Consulta simples");
+                //protocolos = protocoloController.buscaProtocolosSimples(j.campoDescricao.getText());
+                protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), j.campoMensagem.getText(), operadora, atendente);
+            }
+            if (!operadora.equals("") && atendente.equals("")){
+                System.out.println("Consulta buscaProtocolosDinamico");
+                //JOptionPane.showMessageDialog(null, "Consulta buscaProtocolosDinamico");
+                protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), j.campoMensagem.getText(), operadora, atendente);
+            }
+            if (operadora.equals("") && !atendente.equals("")){
+                System.out.println("Consulta buscaProtocolosDinamico");
+                //JOptionPane.showMessageDialog(null, "Consulta buscaProtocolosDinamico");
+                protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), j.campoMensagem.getText(), operadora, atendente);
+            }
+            if (!operadora.equals("") && !atendente.equals("")){
+                System.out.println("Consulta buscaProtocolosDinamico");
+                //JOptionPane.showMessageDialog(null, "Consulta buscaProtocolosDinamico");
+                protocolos = protocoloController.buscaProtocolosDinamico(j.campoDescricao.getText(), j.campoMensagem.getText(), operadora, atendente);
+            }
         }
         if (protocolos == null){
             JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum protocolo com estas informações!");

@@ -1,3 +1,6 @@
+package Testes;
+
+import br.com.sss.Control.ProtocoloController;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 

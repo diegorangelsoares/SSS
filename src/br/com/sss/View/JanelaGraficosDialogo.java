@@ -38,9 +38,9 @@ public class JanelaGraficosDialogo extends javax.swing.JDialog {
         String AAAA = dataAtual.RetornaAnoAtualYYYY();
         campoAno.setSelectedItem(AAAA);
         String AnoAAAA = (String) campoAno.getSelectedItem();
-        geraGrafico.geraGraficoDeVendasMensal(painelGrafico1,AnoAAAA);
+        //geraGrafico.geraGraficoDeVendasMensal(painelGrafico1,AnoAAAA);
         
-        geraGrafico.geraGraficoDeOSMensal(painelGrafico3);
+        //geraGrafico.geraGraficoDeOSMensal(painelGrafico3);
         
         //Desabilita guias de acordo com perfil
         //if (em.getPerfil().equals("TICIANO") || em.getPerfil().equals("consultorio")){
@@ -293,7 +293,7 @@ public class JanelaGraficosDialogo extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String AnoAAAA = (String) campoAno.getSelectedItem();
-        geraGrafico.geraGraficoDeVendasMensal(painelGrafico1,AnoAAAA);
+        //geraGrafico.geraGraficoDeVendasMensal(painelGrafico1,AnoAAAA);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

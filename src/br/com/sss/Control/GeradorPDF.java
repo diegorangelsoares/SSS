@@ -2,22 +2,22 @@ package br.com.sss.Control;
 
 import br.com.sss.model.Empresa;
 import br.com.sss.EMail.DrMail;
-import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Document; 
-import com.itextpdf.text.DocumentException; 
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+//import com.itextpdf.text.BadElementException;
+//import com.itextpdf.text.BaseColor;
+//import com.itextpdf.text.Document; 
+//import com.itextpdf.text.DocumentException; 
+//import com.itextpdf.text.Element;
+//import com.itextpdf.text.Font;
+//import com.itextpdf.text.FontFactory;
+//import com.itextpdf.text.Image;
+//import com.itextpdf.text.PageSize;
+//import com.itextpdf.text.Paragraph;
+//import com.itextpdf.text.Phrase;
+//import com.itextpdf.text.Rectangle;
+//import com.itextpdf.text.pdf.BaseFont;
+//import com.itextpdf.text.pdf.PdfPCell;
+//import com.itextpdf.text.pdf.PdfPTable;
+//import com.itextpdf.text.pdf.PdfWriter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -105,7 +105,7 @@ public class GeradorPDF {
 
         em = retornaDadosDaEmpresa();
         
-        criaPastaDentroDoDSistema("Relatorios");
+        //criaPastaDentroDoDSistema("Relatorios");
     }
 
     public String getUrl() {
@@ -119,6 +119,7 @@ public class GeradorPDF {
     
     
     public void VerificaCaminhoDoBancoDeDados(GeradorPDF c){
+        /**
         String SO = verificaSistemaOperacional();            
         if (SO.contains("WINDOWS")){
             //Sistema operacional é windows
@@ -142,6 +143,7 @@ public class GeradorPDF {
             //c.setUrl("jdbc:mysql://"+jc.campoCaminho.getText()+":3309/receitas");
             //JOptionPane.showMessageDialog(null,"O sistema operacional não é Windows");  
         }
+        * */
     }
     
     //Font f = new Font(FontFamily.COURIER, 20, Font.BOLD);
@@ -250,6 +252,7 @@ public class GeradorPDF {
                         return "";
                     }
     }
+    /**
     
     public Empresa retornaEmpresaPadrao(){
                     try { 
@@ -6028,6 +6031,6 @@ public class GeradorPDF {
             return preco;
     }
     
-    
+    */
     
 }

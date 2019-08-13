@@ -50,29 +50,29 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
         super.setResizable(true);  
         
         //Verifica o caminho do banco de dados salvo no caminhoBD.txt
-        co.VerificaCaminhoDoBancoDeDados(co);
+        //co.VerificaCaminhoDoBancoDeDados(co);
         
-        try {
-            usuarioAtivo = co.retornaUsuarioSalvoNoConfig();
-        } catch (IOException ex) {
-            Logger.getLogger(JanelaConfiguracao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
-        //Preenche caminho do BD 
-        campoDoBanco.setSelectedItem(co.retornaCaminhoBDIni(co));
-       
+//        try {
+//            usuarioAtivo = co.retornaUsuarioSalvoNoConfig();
+//        } catch (IOException ex) {
+//            Logger.getLogger(JanelaConfiguracao.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        
+//        //Preenche caminho do BD 
+//        campoDoBanco.setSelectedItem(co.retornaCaminhoBDIni(co));
+//       
         
         //Muda icone da Janela interna
-        setFrameIcon(new ImageIcon(this.getClass().getResource(caminhoImagemIcone.getCaminho())));
+        //setFrameIcon(new ImageIcon(this.getClass().getResource(caminhoImagemIcone.getCaminho())));
                 
         
         
-        if(usuarioAtivo.equals("Admin")){
-            campoDoBanco.setEnabled(true);
-            botaoAlterarBD1.setEnabled(true);
-        }
-   
+//        if(usuarioAtivo.equals("Admin")){
+//            campoDoBanco.setEnabled(true);
+//            botaoAlterarBD1.setEnabled(true);
+//        }
+//   
      
   
     }
@@ -113,19 +113,6 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
         botaoAlterarBD1 = new javax.swing.JButton();
         campoDoBanco = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        campoNomeExcel = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        campoNomeTabela = new javax.swing.JTextField();
-        botaoImportar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        campoNomeDasColunas = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
-        botaoImportar1 = new javax.swing.JButton();
-        botaoImportar2 = new javax.swing.JButton();
-        botaoImportar3 = new javax.swing.JButton();
-        botaoSair4 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         campoNomeExcel1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -138,6 +125,9 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
         botaoImportar8 = new javax.swing.JButton();
         campoSeparados = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        botaoSair1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -328,7 +318,7 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoSair)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Configuração de BD", jPanel10);
@@ -344,328 +334,230 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Importar dados do Excel", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-
-        campoNomeExcel.setEditable(false);
-        campoNomeExcel.setText("\\PLANILHA_TESTE2");
-
-        jLabel4.setText("Nome do arquivo excel  (\\*.csv)");
-
-        jLabel5.setText("Nome da tabela");
-
-        campoNomeTabela.setEditable(false);
-        campoNomeTabela.setText("tab_produto");
-
-        botaoImportar.setText("Importar");
-        botaoImportar.setEnabled(false);
-        botaoImportar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoImportarActionPerformed(evt);
-            }
-        });
-
-        campoNomeDasColunas.setEditable(false);
-        campoNomeDasColunas.setColumns(10);
-        campoNomeDasColunas.setLineWrap(true);
-        campoNomeDasColunas.setRows(5);
-        campoNomeDasColunas.setText("'\\r\\n' (codigo, produto, unid, situacao_tributaria, icm_venda, ncm, grupo, preco_fornecedor, preco_tabela, fornecedor, fabricante, quantidade_estoque, pis_confins)");
-        jScrollPane1.setViewportView(campoNomeDasColunas);
-
-        jLabel6.setText("Campos a Importar (Ex.: '\\r\\n' (codigo,nome)");
-
-        botaoImportar1.setText("Importar código municipio");
-        botaoImportar1.setEnabled(false);
-        botaoImportar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoImportar1ActionPerformed(evt);
-            }
-        });
-
-        botaoImportar2.setText("Importar BD Jacob");
-        botaoImportar2.setEnabled(false);
-        botaoImportar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoImportar2ActionPerformed(evt);
-            }
-        });
-
-        botaoImportar3.setText("Teste");
-        botaoImportar3.setEnabled(false);
-        botaoImportar3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoImportar3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(campoNomeExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(campoNomeTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(botaoImportar3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botaoImportar2))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                            .addComponent(botaoImportar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(botaoImportar1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoNomeExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoNomeTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoImportar)
-                    .addComponent(botaoImportar1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoImportar3)
-                    .addComponent(botaoImportar2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        botaoSair4.setText("Sair");
-        botaoSair4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoSair4ActionPerformed(evt);
-            }
-        });
-
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Importar dados do arquivo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         campoNomeExcel1.setEditable(false);
-        campoNomeExcel1.setText("C:\\");
+        campoNomeExcel1.setText("C:\\Users\\DIEGO\\Desktop\\arquivoImportarMens.txt");
 
-            jLabel8.setText("Nome do arquivo (\\*.csv)");
+        jLabel8.setText("Nome do arquivo (\\*.csv)");
 
-            jLabel9.setText("Nome da tabela");
+        jLabel9.setText("Nome da tabela");
 
-            campoNomeTabela1.setText("tmp_siscon_mensagens");
+        campoNomeTabela1.setText("tmp_siscon_mensagens2");
 
-            botaoImportar4.setText("Importar");
-            botaoImportar4.setEnabled(false);
-            botaoImportar4.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    botaoImportar4ActionPerformed(evt);
-                }
-            });
-
-            botaoImportar7.setText("Teste");
-            botaoImportar7.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    botaoImportar7ActionPerformed(evt);
-                }
-            });
-
-            jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-
-                },
-                new String [] {
-                    "Coluna 1", "Coluna 2", "Coluna 3"
-                }
-            ) {
-                boolean[] canEdit = new boolean [] {
-                    false, false, false
-                };
-
-                public boolean isCellEditable(int rowIndex, int columnIndex) {
-                    return canEdit [columnIndex];
-                }
-            });
-            jScrollPane4.setViewportView(jTable2);
-            if (jTable2.getColumnModel().getColumnCount() > 0) {
-                jTable2.getColumnModel().getColumn(0).setPreferredWidth(30);
-                jTable2.getColumnModel().getColumn(1).setPreferredWidth(30);
-                jTable2.getColumnModel().getColumn(2).setPreferredWidth(200);
+        botaoImportar4.setText("Importar");
+        botaoImportar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoImportar4ActionPerformed(evt);
             }
+        });
 
-            botaoImportar8.setText("Procurar");
-            botaoImportar8.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    botaoImportar8ActionPerformed(evt);
-                }
-            });
+        botaoImportar7.setText("Teste");
+        botaoImportar7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoImportar7ActionPerformed(evt);
+            }
+        });
 
-            campoSeparados.setText(";");
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-            jLabel10.setText("Separador");
+            },
+            new String [] {
+                "Nº", "Coluna 1", "Coluna 2", "Coluna 3", "Título 4"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-            javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-            jPanel5.setLayout(jPanel5Layout);
-            jPanel5Layout.setHorizontalGroup(
-                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel5Layout.createSequentialGroup()
-                                    .addGap(11, 11, 11)
-                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel8)
-                                        .addGroup(jPanel5Layout.createSequentialGroup()
-                                            .addComponent(campoNomeExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(botaoImportar8))
-                                        .addGroup(jPanel5Layout.createSequentialGroup()
-                                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(campoNomeTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel9))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel10)
-                                                .addComponent(campoSeparados, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGroup(jPanel5Layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(botaoImportar7)
-                                    .addGap(36, 36, 36)
-                                    .addComponent(botaoImportar4)))
-                            .addGap(0, 139, Short.MAX_VALUE))
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                    .addContainerGap())
-            );
-            jPanel5Layout.setVerticalGroup(
-                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel8)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(campoNomeExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoImportar8))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel10))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(campoNomeTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(campoSeparados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable2.getColumnModel().getColumn(1).setPreferredWidth(30);
+            jTable2.getColumnModel().getColumn(2).setPreferredWidth(30);
+            jTable2.getColumnModel().getColumn(3).setPreferredWidth(30);
+            jTable2.getColumnModel().getColumn(4).setPreferredWidth(600);
+        }
+
+        botaoImportar8.setText("Procurar");
+        botaoImportar8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoImportar8ActionPerformed(evt);
+            }
+        });
+
+        campoSeparados.setText(";");
+
+        jLabel10.setText("Separador");
+
+        jLabel1.setText("Quantidade: ");
+
+        jLabel2.setForeground(new java.awt.Color(204, 0, 0));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(campoNomeExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botaoImportar8))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(campoNomeTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(campoSeparados, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(botaoImportar7)
+                        .addGap(36, 36, 36)
                         .addComponent(botaoImportar4)
-                        .addComponent(botaoImportar7))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                    .addContainerGap())
-            );
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoNomeExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoImportar8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoNomeTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoSeparados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoImportar4)
+                    .addComponent(botaoImportar7)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
-            javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-            jPanel3.setLayout(jPanel3Layout);
-            jPanel3Layout.setHorizontalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(49, 49, 49)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoSair4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap())
-            );
-            jPanel3Layout.setVerticalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(botaoSair4))
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(47, Short.MAX_VALUE))
-            );
-
-            jTabbedPane1.addTab("Ferramentas de Banco de dados", jPanel3);
-
-            jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                    {null, null, null},
-                    {null, null, null},
-                    {null, null, null},
-                    {null, null, null}
-                },
-                new String [] {
-                    "Coluna 1", "Coluna 2", "Coluna 3"
-                }
-            ) {
-                boolean[] canEdit = new boolean [] {
-                    false, false, false
-                };
-
-                public boolean isCellEditable(int rowIndex, int columnIndex) {
-                    return canEdit [columnIndex];
-                }
-            });
-            jScrollPane3.setViewportView(jTable1);
-            if (jTable1.getColumnModel().getColumnCount() > 0) {
-                jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
-                jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
-                jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
+        botaoSair1.setText("Sair");
+        botaoSair1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSair1ActionPerformed(evt);
             }
+        });
 
-            javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-            jPanel1.setLayout(jPanel1Layout);
-            jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(160, 160, 160)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(494, Short.MAX_VALUE))
-            );
-            jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(284, Short.MAX_VALUE))
-            );
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoSair1)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoSair1)
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
 
-            jTabbedPane1.addTab("tab3", jPanel1);
+        jTabbedPane1.addTab("Ferramentas de Banco de dados", jPanel3);
 
-            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-            getContentPane().setLayout(layout);
-            layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
-            );
-            layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 11, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-            );
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Coluna 1", "Coluna 2", "Coluna 3"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
-            pack();
-        }// </editor-fold>//GEN-END:initComponents
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
+        }
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(494, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(324, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("tab3", jPanel1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
     private void botaoAlterarBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarBDActionPerformed
         //driverBD = campoDriverBD.getText();
@@ -692,23 +584,6 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
         this.setVisible(false);
     }//GEN-LAST:event_botaoSairActionPerformed
 
-    private void botaoImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImportarActionPerformed
-        if (campoNomeExcel.getText().equals("")){
-            //JOptionPane.showMessageDialog(null, "Digite o nome do arquivo sem a extenção!");
-            mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Digite o nome do arquivo sem a extenção!", "Falta informação","erro");
-        }else{ if (campoNomeTabela.getText().equals("")){
-            //JOptionPane.showMessageDialog(null, "Digite o nome da tabela!");
-            mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Digite o nome da tabela!", "Falta informação","erro");
-        }else{
-            i.ImportarExcelParaMysql(campoNomeExcel.getText(), campoNomeTabela.getText(), campoNomeDasColunas.getText());
-        }
-        }
-    }//GEN-LAST:event_botaoImportarActionPerformed
-
-    private void botaoSair4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSair4ActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_botaoSair4ActionPerformed
-
     private void jTabbedPane1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTabbedPane1KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE){
             this.setVisible(false);
@@ -727,17 +602,6 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
         //painelTabela.setVisible(false);
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
-    private void botaoImportar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImportar1ActionPerformed
-        int Confirm = JOptionPane.showConfirmDialog(null,"Importar os códigos IBGE da planilha?","Sim ou Não", JOptionPane.YES_NO_OPTION);
-        if (Confirm == 0){
-            i.ImportarExcelParaMysqlCodigoMunicipio();
-        }
-    }//GEN-LAST:event_botaoImportar1ActionPerformed
-
-    private void botaoImportar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImportar2ActionPerformed
-        i.ImportarBancoDeDados();
-    }//GEN-LAST:event_botaoImportar2ActionPerformed
-
     private void botaoAlterarBD1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarBD1ActionPerformed
         String nomeDoArquivo = "c:\\CaminhoBD.txt";
         BufferedWriter buffWrite = null; 
@@ -755,12 +619,7 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
             Logger.getLogger(JanelaConfiguracao.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
     }//GEN-LAST:event_botaoAlterarBD1ActionPerformed
-
-    private void botaoImportar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImportar3ActionPerformed
-        i.ImportarExcelParaMysqlMedicamentos();
-    }//GEN-LAST:event_botaoImportar3ActionPerformed
 
     private void jPanel3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel3KeyPressed
         if(evt.getKeyCode() == evt.VK_ESCAPE){
@@ -769,7 +628,8 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPanel3KeyPressed
 
     private void botaoImportar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImportar4ActionPerformed
-        // TODO add your handling code here:
+        MensagemController mensagemController = new MensagemController();
+        mensagemController.InserirMensagensDoGride(this);
     }//GEN-LAST:event_botaoImportar4ActionPerformed
 
     private void botaoImportar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImportar7ActionPerformed
@@ -779,15 +639,20 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
             if (campoSeparados.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Informe o separador!");
             }else{
+                jLabel2.setText("Aguarde...");
                 MensagemController mensagemController = new MensagemController();
-                List<Mensagem> mensagens = mensagemController.loadCSV(campoNomeExcel1.getText(), campoSeparados.getText());
+                //List<Mensagem> mensagens = mensagemController.loadCSV(campoNomeExcel1.getText(), campoSeparados.getText());
+                List<Mensagem> mensagens = mensagemController.VerArquivoDeMensagensSiscon(campoNomeExcel1.getText(), campoSeparados.getText());
                 if (mensagens == null){
                     JOptionPane.showMessageDialog(null, "Não foi possível ler o arquivo!");
                 }else{
+                    int contador = 0;
                     for (int i = 0; i < mensagens.size(); i++) {
                         javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel)jTable2.getModel();
-                        dtm.addRow(new Object[]{mensagens.get(i).getProtocolo(), mensagens.get(i).getData(), mensagens.get(i).getRecurso(),mensagens.get(i).getMensagem()}); 
+                        dtm.addRow(new Object[]{i,mensagens.get(i).getProtocolo(), mensagens.get(i).getData(), mensagens.get(i).getRecurso(),mensagens.get(i).getMensagem()});
+                        contador++;
                     }
+                    jLabel1.setText("Quantidade de mensagens no arquivo: "+contador);
 
                 }
             }
@@ -796,21 +661,25 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
 
     private void botaoImportar8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImportar8ActionPerformed
         campoNomeExcel1.setText("");
-        
+
         try {
             JFileChooser jFileChooser = new JFileChooser();
             int ok = jFileChooser.showOpenDialog(null);
             if (ok == JFileChooser.APPROVE_OPTION) {
                 campoNomeExcel1.setText(jFileChooser.getCurrentDirectory().getPath() + "\\" + jFileChooser.getSelectedFile().getName()); // caminho do arquivo
-                //JOptionPane.showMessageDialog(rootPane, "Caminho:"+caminho);
-                //System.out.println(conteudo);
-            } else {
-                jFileChooser.cancelSelection();
+                    //JOptionPane.showMessageDialog(rootPane, "Caminho:"+caminho);
+                    //System.out.println(conteudo);
+                } else {
+                    jFileChooser.cancelSelection();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }//GEN-LAST:event_botaoImportar8ActionPerformed
+
+    private void botaoSair1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSair1ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_botaoSair1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -851,36 +720,28 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAlterarBD;
     private javax.swing.JButton botaoAlterarBD1;
-    private javax.swing.JButton botaoImportar;
-    private javax.swing.JButton botaoImportar1;
-    private javax.swing.JButton botaoImportar2;
-    private javax.swing.JButton botaoImportar3;
     private javax.swing.JButton botaoImportar4;
     private javax.swing.JButton botaoImportar7;
     private javax.swing.JButton botaoImportar8;
     private javax.swing.JButton botaoPadrao;
     private javax.swing.JButton botaoSair;
-    private javax.swing.JButton botaoSair4;
+    private javax.swing.JButton botaoSair1;
     public javax.swing.JComboBox<String> campoDoBanco;
     private javax.swing.JTextField campoDriverBD;
-    private javax.swing.JTextArea campoNomeDasColunas;
-    private javax.swing.JTextField campoNomeExcel;
     private javax.swing.JTextField campoNomeExcel1;
-    private javax.swing.JTextField campoNomeTabela;
-    private javax.swing.JTextField campoNomeTabela1;
+    public javax.swing.JTextField campoNomeTabela1;
     private javax.swing.JPasswordField campoSenhaBD;
     private javax.swing.JTextField campoSeparados;
     private javax.swing.JTextField campoUrlBD;
     private javax.swing.JTextField campoUsuarioBD;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -889,13 +750,11 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    public javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

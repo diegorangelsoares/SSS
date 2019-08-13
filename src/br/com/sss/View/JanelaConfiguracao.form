@@ -39,8 +39,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" pref="500" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" pref="540" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,7 +104,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="botaoSair" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="200" max="32767" attributes="0"/>
+                      <EmptySpace pref="240" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -364,197 +365,28 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="botaoSair4" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="botaoSair1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel5" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="botaoSair4" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="47" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="botaoSair1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="48" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel4">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Importar dados do Excel">
-                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-                    </TitledBorder>
-                  </Border>
-                </Property>
-              </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel6" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
-                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="campoNomeExcel" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
-                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="campoNomeTabela" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="botaoImportar3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="botaoImportar2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="botaoImportar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="botaoImportar1" min="-2" pref="165" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <EmptySpace pref="42" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="campoNomeExcel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="campoNomeTabela" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="108" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="botaoImportar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botaoImportar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="botaoImportar3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botaoImportar2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JTextField" name="campoNomeExcel">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" value="\u005cPLANILHA_TESTE2" containsInvalidXMLChars="true"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel4">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Nome do arquivo excel  (\u005c*.csv)" containsInvalidXMLChars="true"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel5">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Nome da tabela"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="campoNomeTabela">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" value="tab_produto"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="botaoImportar">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Importar"/>
-                    <Property name="enabled" type="boolean" value="false"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoImportarActionPerformed"/>
-                  </Events>
-                </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-                  <AuxValues>
-                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                  </AuxValues>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="campoNomeDasColunas">
-                      <Properties>
-                        <Property name="editable" type="boolean" value="false"/>
-                        <Property name="columns" type="int" value="10"/>
-                        <Property name="lineWrap" type="boolean" value="true"/>
-                        <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="&apos;\u005cr\u005cn&apos; (codigo, produto, unid, situacao_tributaria, icm_venda, ncm, grupo, preco_fornecedor, preco_tabela, fornecedor, fabricante, quantidade_estoque, pis_confins)" containsInvalidXMLChars="true"/>
-                      </Properties>
-                    </Component>
-                  </SubComponents>
-                </Container>
-                <Component class="javax.swing.JLabel" name="jLabel6">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Campos a Importar (Ex.: &apos;\u005cr\u005cn&apos; (codigo,nome)" containsInvalidXMLChars="true"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="botaoImportar1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Importar c&#xf3;digo municipio"/>
-                    <Property name="enabled" type="boolean" value="false"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoImportar1ActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="botaoImportar2">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Importar BD Jacob"/>
-                    <Property name="enabled" type="boolean" value="false"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoImportar2ActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="botaoImportar3">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Teste"/>
-                    <Property name="enabled" type="boolean" value="false"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoImportar3ActionPerformed"/>
-                  </Events>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="javax.swing.JButton" name="botaoSair4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Sair"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoSair4ActionPerformed"/>
-              </Events>
-            </Component>
             <Container class="javax.swing.JPanel" name="jPanel5">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -572,41 +404,41 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                          <Component id="campoNomeExcel1" min="-2" pref="202" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="botaoImportar8" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="campoNomeExcel1" min="-2" pref="202" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="botaoImportar8" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="campoNomeTabela1" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
-                                                      <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="campoSeparados" min="-2" pref="99" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
+                                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                              <Component id="campoNomeTabela1" min="-2" pref="185" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="campoSeparados" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="botaoImportar7" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                          <Component id="botaoImportar4" min="-2" max="-2" attributes="0"/>
-                                      </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="139" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane4" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane4" pref="829" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="botaoImportar7" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Component id="botaoImportar4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -637,6 +469,8 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="botaoImportar4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="botaoImportar7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane4" pref="239" max="32767" attributes="0"/>
@@ -649,7 +483,7 @@
                 <Component class="javax.swing.JTextField" name="campoNomeExcel1">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" value="C:\u005c" containsInvalidXMLChars="true"/>
+                    <Property name="text" type="java.lang.String" value="C:\u005cUsers\u005cDIEGO\u005cDesktop\u005carquivoImportarMens.txt" containsInvalidXMLChars="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
@@ -664,13 +498,15 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="campoNomeTabela1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="tmp_siscon_mensagens"/>
+                    <Property name="text" type="java.lang.String" value="tmp_siscon_mensagens2"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JButton" name="botaoImportar4">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Importar"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoImportar4ActionPerformed"/>
@@ -694,14 +530,26 @@
                     <Component class="javax.swing.JTable" name="jTable2">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="3" rowCount="0">
+                          <Table columnCount="5" rowCount="0">
+                            <Column editable="false" title="N&#xba;" type="java.lang.Object"/>
                             <Column editable="false" title="Coluna 1" type="java.lang.Object"/>
                             <Column editable="false" title="Coluna 2" type="java.lang.Object"/>
                             <Column editable="false" title="Coluna 3" type="java.lang.Object"/>
+                            <Column editable="false" title="T&#xed;tulo 4" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="10" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="30" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="30" resizable="true">
                               <Title/>
                               <Editor/>
@@ -712,7 +560,7 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="600" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -723,6 +571,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -744,8 +595,28 @@
                     <Property name="text" type="java.lang.String" value="Separador"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Quantidade: "/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel2">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="cc" type="rgb"/>
+                    </Property>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="botaoSair1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sair"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoSair1ActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel1">
@@ -772,7 +643,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="177" max="-2" attributes="0"/>
-                      <EmptySpace pref="284" max="32767" attributes="0"/>
+                      <EmptySpace pref="324" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

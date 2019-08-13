@@ -5,18 +5,29 @@
  */
 package br.com.sss.Control;
 
+import br.com.sss.View.JanelaConfiguracao;
 import br.com.sss.model.Mensagem;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -32,6 +43,11 @@ public class MensagemController {
     String servicoBanco = "ATEND";
     String usuarioBanco = "sup_infomed";
     String senhaBanco = "gps$$$";
+    
+    ArquivoConfiguracao arquivoConfiguracao = new ArquivoConfiguracao();
+    public GeraTXT GeradorTXT = new GeraTXT();
+    
+    MensagemErro mensagemErro = new MensagemErro();
     
     public Connection con1;
     
@@ -184,86 +200,20 @@ public class MensagemController {
                 while ((line = br.readLine()) != null) {
                     // Usar o separador
                     String[] column = line.split(separatorCSV);           
-                    String dataImportacao = "";
                     //Não pegar linha 0
-                    if (contadorLinha != 0){     
-                        //System.out.println("Tamanho: "+column.length);
-                            System.out.println("Carregando informações do combustivel "+contadorLinha+", aguarde..!");
-                        //Com 11 colunas 
-                        //if (column.length == 11){
-                            //contadorTamanho11++;
-                            String protocolo = column[0];
-                            String data = column[1];
-                            String recurso = column[2];
-                            String mensagem = column[3];
-                            Mensagem me = new Mensagem(0, protocolo, data, recurso, mensagem);
-                            mensagens.add(me);
-                           
-                        //}
-//                        if (column.length == 12){
-//                            //contadorTamanho12++;
-//                            String regiao = column[0];
-//                            String estado = column[1];
-//                            String municipio = column[2];
-//                            String revenda = column[3];
-//                            String instalacao = column[5];
-//                            String produto = column[6];
-//                            String dataDaColeta = column[7];
-//                            String valoDaCompra = column[8];
-//                            String ValorDaVenda = column[9];
-//                            String unidadeDeMedida = column[10].replace(" / litro", "");
-//                            String bandeira = column[11];  
-//                            Combustivel combustivel = new Combustivel(0, regiao, estado, municipio, revenda, instalacao, produto, dataDaColeta, valoDaCompra, ValorDaVenda, unidadeDeMedida, bandeira,dataImportacao);
-//                            combustiveis.add(combustivel);
-//                            //Imprime no console para teste
-//    //                        System.out.println("Tamanho 12");
-//    //	                System.out.println("Regiao: " + combustivel.getRegiao() + "\nestado: " + combustivel.getEstado() + "\nmunicipio: "+ combustivel.getMunicipio()+ "\nrevenda: "+ combustivel.getRevenda()+ "\ninstalacao: "+ combustivel.getInstalacao()
-//    //	                 +"\nproduto: " + combustivel.getProduto() + "\ndataDaColeta: " + combustivel.getDataDaColeta() + "\nvalorDaCompra: "+ combustivel.getValoDaCompra()+ "\nValorDaVenda: "+ combustivel.getValorDaVenda()+ "\nunidadeDeMedida: "+ combustivel.getUnidadeDeMedida()
-//    //	                 +"\nbandeira: " + combustivel.getBandeira() + "\ndataImportacao: " + combustivel.getDataImportacao()+"\n");
-//                        }
-//                        if (column.length == 13){
-//                            //contadorTamanho13++;
-//                            String regiao = column[0];
-//                            String estado = column[1];
-//                            String municipio = column[2];
-//                            String revenda = column[3];
-//                            String instalacao = column[6];
-//                            String produto = column[7];
-//                            String dataDaColeta = column[8];
-//                            String valoDaCompra = column[9];
-//                            String ValorDaVenda = column[10];
-//                            String unidadeDeMedida = column[11].replace(" / litro", "");
-//                            String bandeira = column[12];  
-//                            Combustivel combustivel = new Combustivel(0, regiao, estado, municipio, revenda, instalacao, produto, dataDaColeta, valoDaCompra, ValorDaVenda, unidadeDeMedida, bandeira,dataImportacao);
-//                            combustiveis.add(combustivel);
-//                            //Imprime no console para teste
-//    //                        System.out.println("Tamanho 13");
-//    //	                System.out.println("Regiao: " + combustivel.getRegiao() + "\nestado: " + combustivel.getEstado() + "\nmunicipio: "+ combustivel.getMunicipio()+ "\nrevenda: "+ combustivel.getRevenda()+ "\ninstalacao: "+ combustivel.getInstalacao()
-//    //	                 +"\nproduto: " + combustivel.getProduto() + "\ndataDaColeta: " + combustivel.getDataDaColeta() + "\nvalorDaCompra: "+ combustivel.getValoDaCompra()+ "\nValorDaVenda: "+ combustivel.getValorDaVenda()+ "\nunidadeDeMedida: "+ combustivel.getUnidadeDeMedida()
-//    //	                 +"\nbandeira: " + combustivel.getBandeira() + "\ndataImportacao: " + combustivel.getDataImportacao()+"\n");
-//                        }
-//                        if (column.length == 17){
-//                            //contadorTamanho17++;
-//                            String regiao = column[0];
-//                            String estado = column[1];
-//                            String municipio = column[2];
-//                            String revenda = column[3] + " "+column[4] + " "+column[5];
-//                            String instalacao = column[10];
-//                            String produto = column[11];
-//                            String dataDaColeta = column[12];
-//                            String valoDaCompra = column[13];
-//                            String ValorDaVenda = column[14];
-//                            String unidadeDeMedida = column[15].replace(" / litro", "");
-//                            String bandeira = column[16];
-//                            Combustivel combustivel = new Combustivel(0, regiao, estado, municipio, revenda, instalacao, produto, dataDaColeta, valoDaCompra, ValorDaVenda, unidadeDeMedida, bandeira,dataImportacao);
-//                            combustiveis.add(combustivel);
-//                            //Imprime no console para teste
-//    //                        System.out.println("Tamanho 17");
-//    //	                System.out.println("Regiao: " + combustivel.getRegiao() + "\nestado: " + combustivel.getEstado() + "\nmunicipio: "+ combustivel.getMunicipio()+ "\nrevenda: "+ combustivel.getRevenda()+ "\ninstalacao: "+ combustivel.getInstalacao()
-//    //	                 +"\nproduto: " + combustivel.getProduto() + "\ndataDaColeta: " + combustivel.getDataDaColeta() + "\nvalorDaCompra: "+ combustivel.getValoDaCompra()+ "\nValorDaVenda: "+ combustivel.getValorDaVenda()+ "\nunidadeDeMedida: "+ combustivel.getUnidadeDeMedida()
-//    //	                 +"\nbandeira: " + combustivel.getBandeira() + "\ndataImportacao: " + combustivel.getDataImportacao()+"\n");
-//                        }
-                    }
+                    System.out.println("Tamanho: "+column.length);
+                    System.out.println("Carregando informações do arquivo linha "+contadorLinha+", aguarde..!");
+                    String trechoInicial = line.substring(0, 1);
+                    System.out.println("Trecho inicial: "+trechoInicial);
+                    String protocolo = column[0];
+                    String data = column[1];
+                    String recurso = column[2];
+                    String mensagem = column[3];
+                    Mensagem me = new Mensagem(0, protocolo, data, recurso, mensagem);
+                    mensagens.add(me);
+                    System.out.println("Mensagem\nProtocolo: "+me.getProtocolo());
+                  
+                    
                     contadorLinha++;
                 }
                 System.out.println("Informações carregadas com sucesso!");
@@ -284,14 +234,170 @@ public class MensagemController {
             return mensagens;
     }
         
+        public List <Mensagem> VerArquivoDeMensagensSiscon (String filePath, String separatorCSV){   
+            List <Mensagem> mensagens = new ArrayList<>();
+            BufferedReader br = null;
+
+        try { 
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(MensagemController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MensagemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+            
+            String line = "";
+            String protocoloAnterior = "";
+            try {
+                //br = new BufferedReader(new FileReader(filePath));
+                //in = new BufferedReader(new FileReader(filePath));
+                int contadorLinha = 0;
+                while ((line = br.readLine()) != null) {
+                    if (contadorLinha != 0){
+                        // Usar o separador
+                        String[] column = line.split(separatorCSV);           
+                        //Não pegar linha 0
+                        System.out.println("Tamanho: "+column.length);
+    //                    if (column.length > 1){
+    //                        
+    //                    }
+                        String trechoInicial = line.substring(0, 0);
+                        System.out.println("Trecho inicial: "+trechoInicial);
+                        if (column.length >= 1){
+                            //Contem as 4 colunas corretas
+                            if (column.length == 4){
+                                System.out.println("Numero da Linha: "+contadorLinha);
+                                System.out.println("Linha: "+line);
+                                //if (verificaSeNumero(trechoInicial) == true){
+                                //Contem numero, entao eh uma nova mensagem
+                                String protocolo = column[0];
+                                String data = column[1];
+                                String recurso = column[2];
+                                String mensagem = column[3];
+                                Mensagem me = new Mensagem(contadorLinha, protocolo, data, recurso, mensagem);
+                                mensagens.add(me);
+                                protocoloAnterior = protocolo;
+                                System.out.println("Protocolo adicionado: "+me.getProtocolo());    
+                            }
+                            //Contem 3 colunas
+                            if (column.length == 3){
+                                System.out.println("Numero da Linha: "+contadorLinha);
+                                System.out.println("Linha: "+line);
+                                //if (verificaSeNumero(trechoInicial) == true){
+                                //Contem numero, entao eh uma nova mensagem
+                                String protocolo = column[0];
+                                String data = column[1];
+                                String recurso = column[2];
+                                //String mensagem = column[3];
+                                Mensagem me = new Mensagem(contadorLinha, protocolo, data, recurso, "");
+                                mensagens.add(me);
+                                protocoloAnterior = protocolo;
+                                System.out.println("Protocolo adicionado: "+me.getProtocolo());    
+                            }
+                            /**else{
+                                  editarMensagemAnterior(line,mensagens,protocoloAnterior);
+                                  System.out.println("Alterou Protocolo anterior.");
+                            } */
+                            if (column.length == 1){
+                                editarMensagemAnterior(contadorLinha-1,line,mensagens,protocoloAnterior);
+                                System.out.println("Alterou Protocolo anterior.");
+                            }
+                            
+                            
+
+                        }else{
+                            //é Continuacao da mensagem anterior
+                            editarMensagemAnterior(contadorLinha-1,line,mensagens,protocoloAnterior);
+                            System.out.println("Alterou Protocolo anterior.");
+                        }
+
+
+                    }
+                    contadorLinha++;
+                    
+                }
+                System.out.println("Informações carregadas com sucesso!");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (br != null) {
+                    try {
+                        br.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            return mensagens;
+    }
+        
+    public void editarMensagemAnterior(int idMensagemAnterior, String mensagem, List<Mensagem> Mens, String protocolo) {
+            if (mensagem == null){
+                //mensagem veio em branco
+            }else{
+                boolean encontrou = false;
+                //idMensagemAnterior = verificaSeExisteIdDaMensagemAnteriorPAraDecrementar(idMensagemAnterior,Mens);
+                while (verificaSeExisteIdDaMensagemAnteriorPAraDecrementar(idMensagemAnterior,Mens) == false || idMensagemAnterior == 0){
+                    idMensagemAnterior--;
+                }
+                for (int i = 0; i < Mens.size(); i++) {
+                    System.out.println("Busca mensagem do id:"+idMensagemAnterior+" para alterar.");
+                     if (Mens.get(i).getId() == idMensagemAnterior && Mens.get(i).getProtocolo().equals(protocolo)) {
+                          // mesmo identificador, então atualiza os valores
+                          Mens.get(i).setMensagem(Mens.get(i).getMensagem() + "\n"+ mensagem);
+                          System.out.println("Mensagem: "+Mens.get(i).getMensagem()+" alterada para : "+Mens.get(i).getMensagem() + "\n"+ mensagem);
+                          encontrou = true;
+                          break;
+                     }
+                }
+
+                // Caso não encontrar pra atualizar, adiciona na lista como um novo (opcional)
+//                if (!encontrou) {
+//                    Mens.add(mensagem);
+//                }
+            }
+    }
+    
+    public boolean verificaSeExisteIdDaMensagemAnteriorPAraDecrementar(int idMensagemAnterior, List<Mensagem> Mens) {
+            boolean retorno = false;
+            if (idMensagemAnterior == 0){
+                retorno = false;
+            }else{
+                if (Mens == null){
+                    //mensagem veio em branco
+                    retorno = false;
+                }else{
+                    boolean encontrou = false;
+                    int contador = 0;
+                    while (contador < Mens.size()){
+                        if (Mens.get(contador).getId() == idMensagemAnterior) {
+                            retorno = true;
+                        }
+                        contador++;
+                    }
+                    
+
+                }
+                
+            }
+            return retorno;
+    }
+        
+    public boolean verificaSeNumero(String texto){
+        if (texto.contains("0") || texto.contains("1") || texto.contains("2") || texto.contains("3") || texto.contains("4") || texto.contains("5") || texto.contains("6") || texto.contains("7") || texto.contains("8") || texto.contains("9")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+        
     public void InserirMensagens(List<Mensagem> mensagens, String tabela){              
         OracleDataSource ods;
         for (int i = 0; i < mensagens.size(); i++) {
-                    
-//                    mensagens.get(i).getProtocolo()
-//                            , mensagens.get(i).getData()
-//                                    , mensagens.get(i).getRecurso()
-//                                            ,mensagens.get(i).getMensagem()}); 
             try {
                 ods = new OracleDataSource();
                 String porta = "1521";
@@ -311,30 +417,60 @@ public class MensagemController {
         JOptionPane.showMessageDialog(null, "Fim da inserção");
     }
     
-    /*
-    
-    try {
-                ods = new OracleDataSource();
+    public void InserirMensagensDoGride(JanelaConfiguracao j){              
+        int totalDeLinhas = j.jTable2.getModel().getRowCount();
+        if (totalDeLinhas < 1){
+            //sem nada na grade
+            JOptionPane.showMessageDialog(null, "Nada na tabela para importar!");
+        }else{
+            DecimalFormat df = new DecimalFormat ("#,##0.00", new DecimalFormatSymbols (new Locale ("pt", "BR")));  
+            int linha =0;
+            double totalGeral = 0;
+            while (linha < totalDeLinhas ){  
+            try {
                 String porta = "1521";
-                ods.setURL("jdbc:oracle:thin:@//"+enderecoBanco+":"+porta+"/"+servicoBanco+""); // jdbc:oracle:thin@//[nome do host]:[porta]/[nome do serviço de BD]
-                ods.setUser(usuarioBanco); // [nome do usuário]
-                ods.setPassword(senhaBanco); // [senha]
-                Connection conn = ods.getConnection();
+                Connection connection = null;  
+                // Load the JDBC driver  
+                String driverName = "oracle.jdbc.driver.OracleDriver";  
+                Class.forName(driverName);  
+                String url = "jdbc:oracle:thin:@" + enderecoBanco + ":" + porta + ":" + servicoBanco;  
+                connection = DriverManager.getConnection(url, usuarioBanco, senhaBanco);  
+
                 //JOptionPane.showMessageDialog(null, "Antes do select");
-                PreparedStatement stmt = conn.prepareStatement("select mens.protocolo,\n" +
-                                                        "       mens.data,\n" +
-                                                        "       mens.recurso,\n" +
-                                                        "       mens.mensagem \n" +
-                                                        "       from info_atend_255.tmp_siscon prot, info_atend_255.tmp_siscon_mensagens mens\n" +
-                                                        "       where prot.protocolo = mens.protocolo\n" +
-                                                        "       and prot.protocolo = "+protocolo +" order by mens.data");
-          
-                ResultSet rs = stmt.executeQuery();
+                String protocolo = (String) j.jTable2.getValueAt(linha, 1);
+                int  prot = Integer.parseInt(protocolo);
+                String data = (String) j.jTable2.getValueAt(linha, 2);
+                String recurso = (String) j.jTable2.getValueAt(linha, 3);
+                int rec = Integer.parseInt(recurso);
+                String mensagem = (String) j.jTable2.getValueAt(linha, 4);
+                Mensagem m = new Mensagem(0, protocolo, data, recurso, mensagem);
+                String sql = "insert into INFO_ATEND_255."+j.campoNomeTabela1.getText()+" values ('"+prot+"',to_date('"+m.getData()+"', 'dd/mm/yyyy hh24:mi:ss'),"+rec+",'"+m.getMensagem()+"')";
+                Statement stmt = connection.createStatement();  
+                
+                // Execute the insert statement  
+                stmt.executeUpdate(sql); 
+                connection.commit();;
+                
+            }  catch( SQLException e){ //trata os erros SQL
+                criaArquivoErroEEnviaEmail(e, "InserirMensagensDoGride");
+            }   catch (ClassNotFoundException ex) {
+                Logger.getLogger(MensagemController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            linha++;
+        }
+        JOptionPane.showMessageDialog(null, "Fim da inserção");
+        }
+    }
     
+    public void criaArquivoErroEEnviaEmail(SQLException ex, String nomeFuncao){
+        String nomeDoArquivo = GeradorTXT.GeraTxtDeErro("Erro Cmdo SQL " + ex.getMessage()+" Ao "+nomeFuncao);
+        String textoDoEmailDeErro = "Erro no Comando SQL: " + ex.getMessage()+" Ao executar a função: "+nomeFuncao+"\n\nVersão do Sistema: "+"1.0.0.1";
+        //mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso( "Erro - Contate o desenvolvedor!");
+        mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Erro - Contate o desenvolvedor!", "Desculpe-me pelo Erro","erro");
+        //email.enviarEmailDoErro("INFOMED","Registro de erro do sistema" , nomeDoArquivo,"1.0.0.1");
+    }
     
-    
-    */
-    
+
     
     
 }

@@ -47,7 +47,7 @@ public class JanelaConsultaErros extends javax.swing.JInternalFrame {
         super.setResizable(false);
         //super.setLocationRelativeTo(null);
         
-//        arquivo.verificaSeTemArquivoNomes();
+        arquivo.verificaSeTemArquivoNomes();
         PreencheNomes();
         negocio.preencheMesSeguienteAoIniciarJanela(this);
         

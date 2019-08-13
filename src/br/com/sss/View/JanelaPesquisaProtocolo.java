@@ -41,7 +41,8 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
         //Muda icone da Janela interna
         //setFrameIcon(new ImageIcon(this.getClass().getResource(caminhoImagemIcone.getCaminho())));
         
-       
+        jTabbedPane1.setEnabledAt(0, true);
+        jTabbedPane1.setEnabledAt(1, false);
         
         //colocar barra de rolagem na tabela
         //tabelaProcotolos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -68,6 +69,26 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
        
     }
     
+    public void TrataFuncaoPesquisar(){
+        limpar.apagaDadosDaTabela(tabelaProcotolos);
+        String atendente = (String) campoAtendente.getSelectedItem();
+        String operadora = (String) campoOperadora.getSelectedItem();
+        if (atendente == null){
+            atendente = "";
+        }
+        if (operadora == null){
+            operadora = "";
+        }
+        if (campoDescricao.getText().equals("") && campoMensagem.getText().equals("") && atendente.equals("") && operadora.equals("")){
+            //JOptionPane.showMessageDialog(null, "Preencha algum campo para pesquisar!");
+        }else{ 
+            campoDescricao.setText(campoDescricao.getText().toUpperCase());
+            campoMensagem.setText(campoMensagem.getText().toUpperCase());
+            controller.pesquisaProtocolos(this);
+            
+        }
+    }
+    
     public void finalizaJanela(){
         super.dispose();
     }
@@ -91,6 +112,7 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         campoDescricao = new javax.swing.JTextField();
@@ -107,8 +129,11 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         campoMensagem = new javax.swing.JTextField();
         botaoLimpar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jPanel2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -123,6 +148,9 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
         campoDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 campoDescricaoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoDescricaoKeyReleased(evt);
             }
         });
 
@@ -239,6 +267,9 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 campoMensagemKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoMensagemKeyReleased(evt);
+            }
         });
 
         botaoLimpar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -285,13 +316,13 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
                         .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(PainelTabelaProdutos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 11, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
@@ -306,9 +337,23 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
                     .addComponent(botaoPesquisar)
                     .addComponent(botaoLimpar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PainelTabelaProdutos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(PainelTabelaProdutos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jTabbedPane1.addTab("Simplificado", jPanel2);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1236, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 606, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Avançado", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -316,12 +361,14 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         pack();
@@ -329,28 +376,12 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
 
     private void campoDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescricaoKeyPressed
         if(evt.getKeyCode() == evt.VK_ENTER){
-            botaoPesquisar.requestFocus();
+            TrataFuncaoPesquisar();
         }
     }//GEN-LAST:event_campoDescricaoKeyPressed
 
     private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
-        limpar.apagaDadosDaTabela(tabelaProcotolos);
-        String atendente = (String) campoAtendente.getSelectedItem();
-        String operadora = (String) campoOperadora.getSelectedItem();
-        if (atendente == null){
-            atendente = "";
-        }
-        if (operadora == null){
-            operadora = "";
-        }
-        if (campoDescricao.getText().equals("") && campoMensagem.getText().equals("") && atendente.equals("") && operadora.equals("")){
-            JOptionPane.showMessageDialog(null, "Preencha algum campo para pesquisar!");
-        }else{ 
-            campoDescricao.setText(campoDescricao.getText().toUpperCase());
-            campoMensagem.setText(campoMensagem.getText().toUpperCase());
-            controller.pesquisaProtocolos(this);
-            
-        }
+        TrataFuncaoPesquisar();
         
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
@@ -421,7 +452,9 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tabelaProcotolosMouseClicked
 
     private void campoMensagemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoMensagemKeyPressed
-        // TODO add your handling code here:
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            TrataFuncaoPesquisar();
+        }
     }//GEN-LAST:event_campoMensagemKeyPressed
 
     private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparActionPerformed
@@ -436,6 +469,14 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
     private void botaoLimparKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botaoLimparKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoLimparKeyPressed
+
+    private void campoDescricaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescricaoKeyReleased
+        TrataFuncaoPesquisar();
+    }//GEN-LAST:event_campoDescricaoKeyReleased
+
+    private void campoMensagemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoMensagemKeyReleased
+        TrataFuncaoPesquisar();
+    }//GEN-LAST:event_campoMensagemKeyReleased
 
     /**
      * @param args the command line arguments
@@ -487,8 +528,10 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JTable tabelaProcotolos;
     // End of variables declaration//GEN-END:variables
 }

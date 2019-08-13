@@ -24,7 +24,6 @@ import com.dropbox.core.DbxRequestConfig;
 //import com.google.zxing.WriterException;
 //import com.google.zxing.common.BitMatrix;
 //import com.google.zxing.qrcode.QRCodeWriter;
-import com.itextpdf.text.DocumentException;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
@@ -86,9 +85,7 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JLabel;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableCellRenderer;
-import net.sf.jasperreports.engine.JRException;
 import oracle.jdbc.pool.OracleDataSource;
-import org.mozilla.javascript.regexp.SubString;
 
     /**
      *  @author Diego Rangel
@@ -390,13 +387,13 @@ import org.mozilla.javascript.regexp.SubString;
         email.enviarEmailDoErro(nomeEmpresaPadrao,"Registro de erro do sistema" , nomeDoArquivo,versaoSistema);
     }
     
-    public void criaArquivoErroEEnviaEmail(JRException ex, String nomeFuncao){
-        String nomeDoArquivo = GeradorTXT.GeraTxtDeErro("Erro Cmdo SQL " + ex.getMessage()+" Ao "+nomeFuncao);
-        String textoDoEmailDeErro = "Erro no Comando SQL: " + ex.getMessage()+" Ao executar a função: "+nomeFuncao+"\n\nVersão do Sistema: "+versaoSistema;
-        //mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso( "Erro - Contate o desenvolvedor!");
-       mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Erro - Contate o desenvolvedor!", "Desculpe-me pelo Erro","erro");
-        email.enviarEmailDoErro(nomeEmpresaPadrao,"Registro de erro do sistema" , nomeDoArquivo,versaoSistema);
-    }
+//    public void criaArquivoErroEEnviaEmail(JRException ex, String nomeFuncao){
+//        String nomeDoArquivo = GeradorTXT.GeraTxtDeErro("Erro Cmdo SQL " + ex.getMessage()+" Ao "+nomeFuncao);
+//        String textoDoEmailDeErro = "Erro no Comando SQL: " + ex.getMessage()+" Ao executar a função: "+nomeFuncao+"\n\nVersão do Sistema: "+versaoSistema;
+//        //mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso( "Erro - Contate o desenvolvedor!");
+//       mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Erro - Contate o desenvolvedor!", "Desculpe-me pelo Erro","erro");
+//        email.enviarEmailDoErro(nomeEmpresaPadrao,"Registro de erro do sistema" , nomeDoArquivo,versaoSistema);
+//    }
         
     public void criaArquivoErroConversaoEnviaEmail(ParseException ex, String nomeFuncao){
         String nomeDoArquivo = GeradorTXT.GeraTxtDeErro("Erro Cmdo SQL " + ex.getMessage()+" Ao "+nomeFuncao);

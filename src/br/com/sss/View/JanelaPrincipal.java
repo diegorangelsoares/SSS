@@ -9,7 +9,7 @@ import br.com.sss.Control.Conexao;
 import br.com.sss.Control.MensagemErro;
 import br.com.sss.Control.DadosConexao;
 import br.com.sss.Control.GeraData;
-import static com.itextpdf.text.Annotation.URL;
+//import static com.itextpdf.text.Annotation.URL;
 import br.com.sss.ireport.Ireport;
 import java.awt.Color;
 import java.awt.Container;
@@ -41,23 +41,23 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
-import net.sf.jasperreports.engine.JRException;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
-import static org.xhtmlrenderer.util.XRLog.layout;
+//import net.sf.jasperreports.engine.JRException;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
+//import static org.xhtmlrenderer.util.XRLog.layout;
 
 /**
  *  @author Diego Rangel
@@ -92,21 +92,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         super.setExtendedState(super.MAXIMIZED_BOTH);
         super.setDefaultCloseOperation(super.EXIT_ON_CLOSE);
         super.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE); 
-        
-        //Verifica o caminho do banco de dados salvo no caminhoBD.txt   
-//        co.VerificaCaminhoDoBancoDeDados(co);
-        
-        //empresaSalvaNoBD = co.retornaDadosDaEmpresa();        
-                
-                
-        //co.VerificaStatusBanco(this);
+
         campoStatus.setText("Status: Ok!");
         
         //Coloca a data atual no campo data da tela
         campoData.setText(dataAtual.RetornaDataAtual());
         
         //Preenche o número da versão na tela inicial
-        campoVersao.setText("Versão: 1.0.0.3");
+        campoVersao.setText("Versão: 1.0.0.5");
         
         //Preenche a licença
         campoLicenca.setText("Licença: Teste");

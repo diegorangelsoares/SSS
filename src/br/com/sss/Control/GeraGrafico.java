@@ -1,13 +1,13 @@
 
 package br.com.sss.Control;
 
-import javax.swing.JPanel;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
+//import javax.swing.JPanel;
+//import org.jfree.chart.ChartFactory;
+//import org.jfree.chart.ChartPanel;
+//import org.jfree.chart.JFreeChart;
+//import org.jfree.chart.plot.PlotOrientation;
+//import org.jfree.data.category.CategoryDataset;
+//import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -15,7 +15,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  */
 
 public class GeraGrafico {
-    
+    /**
     Conexao co = new Conexao();
     
     public void criaGraficoAnual(JPanel painel, double valorJaneiro, double valorFevereiro, double valorMarco, double valorAbril, double valorMaio, double valorJunho, double valorJulho, double valorAgosto, double valorSetembro, double valorOutubro, double valorNovembro, double valorDezembro){
@@ -123,6 +123,6 @@ public class GeraGrafico {
 //        Painel.revalidate();
 //        Painel.repaint();
     }
-    
+    */
     
 }

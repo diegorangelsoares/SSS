@@ -8,7 +8,7 @@ import br.com.sss.Control.GeradorPDF;
 import br.com.sss.Control.ZiparPasta;
 import br.com.sss.Control.MensagemErro;
 import br.com.sss.EMail.DrMail;
-import com.itextpdf.text.DocumentException;
+//import com.itextpdf.text.DocumentException;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
