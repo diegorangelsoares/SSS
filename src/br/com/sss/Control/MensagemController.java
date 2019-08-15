@@ -238,15 +238,14 @@ public class MensagemController {
             List <Mensagem> mensagens = new ArrayList<>();
             BufferedReader br = null;
 
-        try { 
-            br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(MensagemController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MensagemController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            try { 
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(MensagemController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MensagemController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-            
             String line = "";
             String protocoloAnterior = "";
             try {
@@ -255,35 +254,37 @@ public class MensagemController {
                 int contadorLinha = 0;
                 while ((line = br.readLine()) != null) {
                     if (contadorLinha != 0){
+                        System.out.println("Linha: "+contadorLinha);
                         // Usar o separador
                         String[] column = line.split(separatorCSV);           
                         //Não pegar linha 0
-                        System.out.println("Tamanho: "+column.length);
+                        //System.out.println("Tamanho: "+column.length);
     //                    if (column.length > 1){
     //                        
     //                    }
                         String trechoInicial = line.substring(0, 0);
-                        System.out.println("Trecho inicial: "+trechoInicial);
+                        //System.out.println("Trecho inicial: "+trechoInicial);
                         if (column.length >= 1){
                             //Contem as 4 colunas corretas
                             if (column.length == 4){
-                                System.out.println("Numero da Linha: "+contadorLinha);
-                                System.out.println("Linha: "+line);
+//                                System.out.println("Numero da Linha: "+contadorLinha);
+//                                System.out.println("Linha: "+line);
                                 //if (verificaSeNumero(trechoInicial) == true){
                                 //Contem numero, entao eh uma nova mensagem
                                 String protocolo = column[0];
                                 String data = column[1];
                                 String recurso = column[2];
                                 String mensagem = column[3];
+                                mensagem = mensagem.replace("'", "");
                                 Mensagem me = new Mensagem(contadorLinha, protocolo, data, recurso, mensagem);
                                 mensagens.add(me);
                                 protocoloAnterior = protocolo;
-                                System.out.println("Protocolo adicionado: "+me.getProtocolo());    
+//                                System.out.println("Protocolo adicionado: "+me.getProtocolo());    
                             }
                             //Contem 3 colunas
                             if (column.length == 3){
-                                System.out.println("Numero da Linha: "+contadorLinha);
-                                System.out.println("Linha: "+line);
+//                                System.out.println("Numero da Linha: "+contadorLinha);
+//                                System.out.println("Linha: "+line);
                                 //if (verificaSeNumero(trechoInicial) == true){
                                 //Contem numero, entao eh uma nova mensagem
                                 String protocolo = column[0];
@@ -293,7 +294,7 @@ public class MensagemController {
                                 Mensagem me = new Mensagem(contadorLinha, protocolo, data, recurso, "");
                                 mensagens.add(me);
                                 protocoloAnterior = protocolo;
-                                System.out.println("Protocolo adicionado: "+me.getProtocolo());    
+//                                System.out.println("Protocolo adicionado: "+me.getProtocolo());    
                             }
                             /**else{
                                   editarMensagemAnterior(line,mensagens,protocoloAnterior);
@@ -301,7 +302,7 @@ public class MensagemController {
                             } */
                             if (column.length == 1){
                                 editarMensagemAnterior(contadorLinha-1,line,mensagens,protocoloAnterior);
-                                System.out.println("Alterou Protocolo anterior.");
+//                                System.out.println("Alterou Protocolo anterior.");
                             }
                             
                             
@@ -309,7 +310,7 @@ public class MensagemController {
                         }else{
                             //é Continuacao da mensagem anterior
                             editarMensagemAnterior(contadorLinha-1,line,mensagens,protocoloAnterior);
-                            System.out.println("Alterou Protocolo anterior.");
+//                            System.out.println("Alterou Protocolo anterior.");
                         }
 
 
@@ -317,7 +318,7 @@ public class MensagemController {
                     contadorLinha++;
                     
                 }
-                System.out.println("Informações carregadas com sucesso!");
+//                System.out.println("Informações carregadas com sucesso!");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -345,11 +346,11 @@ public class MensagemController {
                     idMensagemAnterior--;
                 }
                 for (int i = 0; i < Mens.size(); i++) {
-                    System.out.println("Busca mensagem do id:"+idMensagemAnterior+" para alterar.");
+//                    System.out.println("Busca mensagem do id:"+idMensagemAnterior+" para alterar.");
                      if (Mens.get(i).getId() == idMensagemAnterior && Mens.get(i).getProtocolo().equals(protocolo)) {
                           // mesmo identificador, então atualiza os valores
-                          Mens.get(i).setMensagem(Mens.get(i).getMensagem() + "\n"+ mensagem);
-                          System.out.println("Mensagem: "+Mens.get(i).getMensagem()+" alterada para : "+Mens.get(i).getMensagem() + "\n"+ mensagem);
+                          Mens.get(i).setMensagem(Mens.get(i).getMensagem() + "\n"+ mensagem.replace("'", ""));
+//                          System.out.println("Mensagem: "+Mens.get(i).getMensagem()+" alterada para : "+Mens.get(i).getMensagem() + "\n"+ mensagem);
                           encontrou = true;
                           break;
                      }
@@ -417,14 +418,41 @@ public class MensagemController {
         JOptionPane.showMessageDialog(null, "Fim da inserção");
     }
     
+    public void ApagarMensagens(JanelaConfiguracao j){
+        try {
+                String porta = "1521";
+                Connection connection = null;  
+                // Load the JDBC driver  
+                String driverName = "oracle.jdbc.driver.OracleDriver";  
+                Class.forName(driverName);  
+                String url = "jdbc:oracle:thin:@" + enderecoBanco + ":" + porta + ":" + servicoBanco;  
+                connection = DriverManager.getConnection(url, usuarioBanco, senhaBanco);  
+
+                String sql = "delete INFO_ATEND_255."+j.campoNomeTabela1.getText();
+                Statement stmt = connection.createStatement();  
+                
+                // Execute the insert statement  
+                stmt.executeUpdate(sql); 
+                connection.commit();
+                JOptionPane.showMessageDialog(null, "Mensagens deletadas!");
+                
+            }  catch( SQLException e){ //trata os erros SQL
+                criaArquivoErroEEnviaEmail(e, "ApagarMensagens");
+            }   catch (ClassNotFoundException ex) {
+                Logger.getLogger(MensagemController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
     public void InserirMensagensDoGride(JanelaConfiguracao j){              
         int totalDeLinhas = j.jTable2.getModel().getRowCount();
+        int linha =0;
+        String sql = "";
         if (totalDeLinhas < 1){
             //sem nada na grade
             JOptionPane.showMessageDialog(null, "Nada na tabela para importar!");
         }else{
             DecimalFormat df = new DecimalFormat ("#,##0.00", new DecimalFormatSymbols (new Locale ("pt", "BR")));  
-            int linha =0;
+            
             double totalGeral = 0;
             while (linha < totalDeLinhas ){  
             try {
@@ -438,21 +466,29 @@ public class MensagemController {
 
                 //JOptionPane.showMessageDialog(null, "Antes do select");
                 String protocolo = (String) j.jTable2.getValueAt(linha, 1);
-                int  prot = Integer.parseInt(protocolo);
-                String data = (String) j.jTable2.getValueAt(linha, 2);
-                String recurso = (String) j.jTable2.getValueAt(linha, 3);
-                int rec = Integer.parseInt(recurso);
-                String mensagem = (String) j.jTable2.getValueAt(linha, 4);
-                Mensagem m = new Mensagem(0, protocolo, data, recurso, mensagem);
-                String sql = "insert into INFO_ATEND_255."+j.campoNomeTabela1.getText()+" values ('"+prot+"',to_date('"+m.getData()+"', 'dd/mm/yyyy hh24:mi:ss'),"+rec+",'"+m.getMensagem()+"')";
-                Statement stmt = connection.createStatement();  
-                
-                // Execute the insert statement  
-                stmt.executeUpdate(sql); 
-                connection.commit();;
-                
+                if (verificaSeNumero(protocolo) == true){
+                    int  prot = Integer.parseInt(protocolo);
+                    String data = (String) j.jTable2.getValueAt(linha, 2);
+                    String recurso = (String) j.jTable2.getValueAt(linha, 3);
+                    int rec = Integer.parseInt(recurso);
+                    String mensagem = (String) j.jTable2.getValueAt(linha, 4);
+                    mensagem = mensagem.replace("'", "");
+                    if (mensagem.length() >= 4000){
+                        mensagem = mensagem.substring(0, 3999);
+                    }
+                    Mensagem m = new Mensagem(0, protocolo, data, recurso, mensagem);
+                    sql = "insert into INFO_ATEND_255."+j.campoNomeTabela1.getText()+" values ('"+prot+"',to_date('"+m.getData()+"', 'dd/mm/yyyy hh24:mi:ss'),"+rec+",'"+m.getMensagem()+"')";
+                    Statement stmt = connection.createStatement();  
+
+                    // Execute the insert statement  
+                    stmt.executeUpdate(sql); 
+                    connection.commit();
+                    j.jTable2.setValueAt(false, linha, 5);
+                }else{
+                    j.jTable2.setValueAt(true, linha, 5);
+                }
             }  catch( SQLException e){ //trata os erros SQL
-                criaArquivoErroEEnviaEmail(e, "InserirMensagensDoGride");
+                criaArquivoErroEEnviaEmail(e, "InserirMensagensDoGride - Inserindo linha:"+linha+"\n\nSQL: \n"+sql);
             }   catch (ClassNotFoundException ex) {
                 Logger.getLogger(MensagemController.class.getName()).log(Level.SEVERE, null, ex);
             }

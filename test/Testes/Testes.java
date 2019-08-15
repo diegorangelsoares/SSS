@@ -1,8 +1,10 @@
 package Testes;
 
 
+import br.com.sss.Control.MensagemController;
 import br.com.sss.Control.ProtocoloController;
 import br.com.sss.Control.ProtocoloController;
+import br.com.sss.model.Mensagem;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,32 +25,15 @@ public class Testes {
      */
     public static void main(String[] args) {
     
-        ProtocoloController con = new ProtocoloController();
-        con.retornaWhereParaQeuisarVarios("Diego rangel saoo kkkkss kksjdks kdmskdmsd");
-        
-//        String frase = "Diego é o rei do FIFA11 no PS3";
-//         
-//        String[] palavras = frase.split(" "); //cria array com palavra da frase
-//        
-//        List <String> termosParaPesquisar = new ArrayList<String>();
-//         
-//        String maiorPalavra = "";
-//        for (String palavra : palavras) {
-////            if (palavra.length() > maiorPalavra.length()) { //se palavra atual é maior que a última maior palavra?
-////                maiorPalavra = palavra;
-////            }
-//            termosParaPesquisar.add(palavra);
-//        }
-//        
-//        if (termosParaPesquisar == null){
-//            System.out.println("Não digitou nada!");
-//        }else{
-//            for (int i = 0; i < termosParaPesquisar.size(); i++) {
-//                System.out.println("Termo: "+termosParaPesquisar.get(i));
-//            }
-//        }
-//        System.out.println("qtd de palavras = "+ palavras.length);
-//        System.out.println("Maior   palavra = "+ maiorPalavra);
+        MensagemController mensagemController = new MensagemController();
+        List<Mensagem> mensagens = mensagemController.VerArquivoDeMensagensSiscon("C:\\Users\\DIEGO\\Desktop\\backup_mensagens.txt", ";");
+        int contador = 0;
+        for (int i = 0; i < mensagens.size(); i++) {
+            //System.out.println("Registro:"+mensagens.get(i).getProtocolo() + "  Linha: "+ contador);
+            contador++;
+            //dtm.addRow(new Object[]{i,mensagens.get(i).getProtocolo(), mensagens.get(i).getData(), mensagens.get(i).getRecurso(),mensagens.get(i).getMensagem()});
+        }
+        System.out.println("Total: "+contador);
     
     }
 }

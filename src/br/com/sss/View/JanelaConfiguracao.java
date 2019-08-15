@@ -3,6 +3,7 @@ package br.com.sss.View;
 import br.com.sss.model.Empresa;
 import br.com.sss.Control.BackupSql;
 import br.com.sss.Control.CaminhoImagem;
+import br.com.sss.Control.Clean;
 import br.com.sss.Control.Conexao;
 import br.com.sss.Control.ConvertPasswordToMD5;
 import br.com.sss.Control.GeraData;
@@ -40,6 +41,7 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
     GeraData dataAtual = new GeraData();
     public String usuarioAtivo = "";
     MensagemErro mensagemErro = new MensagemErro();
+    Clean limpar = new Clean();
     
     /**
      * Creates new form JanelaConfiguracao
@@ -127,6 +129,7 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         botaoSair1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -352,7 +355,7 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
             }
         });
 
-        botaoImportar7.setText("Teste");
+        botaoImportar7.setText("Ler arquivo");
         botaoImportar7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoImportar7ActionPerformed(evt);
@@ -364,12 +367,19 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nº", "Coluna 1", "Coluna 2", "Coluna 3", "Título 4"
+                "Nº", "Coluna 1", "Coluna 2", "Coluna 3", "Título 4", "Importar"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -382,6 +392,7 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
             jTable2.getColumnModel().getColumn(2).setPreferredWidth(30);
             jTable2.getColumnModel().getColumn(3).setPreferredWidth(30);
             jTable2.getColumnModel().getColumn(4).setPreferredWidth(600);
+            jTable2.getColumnModel().getColumn(5).setPreferredWidth(10);
         }
 
         botaoImportar8.setText("Procurar");
@@ -399,6 +410,9 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
 
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
 
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBox1.setText("Apagar registros da tabela");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -406,34 +420,40 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(campoNomeExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botaoImportar8))
+                                .addGap(11, 11, 11)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(campoNomeExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(botaoImportar8))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(campoNomeTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel10)
+                                            .addComponent(campoSeparados, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(campoNomeTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap()
+                                .addComponent(botaoImportar7)
+                                .addGap(36, 36, 36)
+                                .addComponent(botaoImportar4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(campoSeparados, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jCheckBox1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(botaoImportar7)
-                        .addGap(36, 36, 36)
-                        .addComponent(botaoImportar4)
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -458,7 +478,8 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
                     .addComponent(botaoImportar4)
                     .addComponent(botaoImportar7)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jCheckBox1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                 .addContainerGap())
@@ -629,32 +650,37 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
 
     private void botaoImportar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImportar4ActionPerformed
         MensagemController mensagemController = new MensagemController();
+        if (jCheckBox1.isSelected()){
+            mensagemController.ApagarMensagens(this);
+        }
         mensagemController.InserirMensagensDoGride(this);
+        //botaoImportar4.setEnabled(false);
+        campoNomeExcel1.setText("");
+        jCheckBox1.setSelected(false);
     }//GEN-LAST:event_botaoImportar4ActionPerformed
 
     private void botaoImportar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImportar7ActionPerformed
+        limpar.apagaDadosDaTabela(jTable2);
         if (campoNomeExcel1.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Escolha o caminho do arquivo!");
         }else{
             if (campoSeparados.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Informe o separador!");
             }else{
-                jLabel2.setText("Aguarde...");
                 MensagemController mensagemController = new MensagemController();
-                //List<Mensagem> mensagens = mensagemController.loadCSV(campoNomeExcel1.getText(), campoSeparados.getText());
                 List<Mensagem> mensagens = mensagemController.VerArquivoDeMensagensSiscon(campoNomeExcel1.getText(), campoSeparados.getText());
-                if (mensagens == null){
-                    JOptionPane.showMessageDialog(null, "Não foi possível ler o arquivo!");
-                }else{
-                    int contador = 0;
-                    for (int i = 0; i < mensagens.size(); i++) {
+                int contador = 0;
+                for (int i = 0; i < mensagens.size(); i++) {
+                    //System.out.println("Registro:"+mensagens.get(i).getProtocolo() + "  Linha: "+ contador);
+                    contador++;
+                    if (mensagemController.verificaSeNumero(mensagens.get(i).getProtocolo()) == true){
                         javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel)jTable2.getModel();
-                        dtm.addRow(new Object[]{i,mensagens.get(i).getProtocolo(), mensagens.get(i).getData(), mensagens.get(i).getRecurso(),mensagens.get(i).getMensagem()});
-                        contador++;
+                        dtm.addRow(new Object[]{i+1,mensagens.get(i).getProtocolo(), mensagens.get(i).getData(), mensagens.get(i).getRecurso(),mensagens.get(i).getMensagem(),true});
                     }
-                    jLabel1.setText("Quantidade de mensagens no arquivo: "+contador);
-
+                    
                 }
+                System.out.println("Total: "+contador);
+                jLabel1.setText("Total carregados: "+contador);
             }
         }
     }//GEN-LAST:event_botaoImportar7ActionPerformed
@@ -735,6 +761,7 @@ public class JanelaConfiguracao extends javax.swing.JInternalFrame {
     private javax.swing.JTextField campoUrlBD;
     private javax.swing.JTextField campoUsuarioBD;
     private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel18;
