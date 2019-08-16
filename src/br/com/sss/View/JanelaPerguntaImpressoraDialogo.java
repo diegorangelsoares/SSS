@@ -37,7 +37,7 @@ public class JanelaPerguntaImpressoraDialogo extends javax.swing.JDialog {
         //campoPerfil.setSelectedItem(co.em.getPerfil());
         
         //Muda icone da Janela
-        URL url = this.getClass().getResource("/be.com.sss.Imagem/ICONE_DR_3.png");  
+        URL url = this.getClass().getResource("/Imagens/ICONE_DR_3.png");  
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
         this.setIconImage(imagemTitulo); 
     }

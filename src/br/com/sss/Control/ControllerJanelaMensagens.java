@@ -33,12 +33,12 @@ public class ControllerJanelaMensagens {
                 str.append(men.replaceAll("\n","<br>"));
                 str.append("</html>");
                 javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel)j.tabelaMensagens.getModel();
-                dtm.addRow(new Object[]{mensagens.get(i).getData(), mensagens.get(i).getRecurso(), str.toString()}); 
+                dtm.addRow(new Object[]{mensagens.get(i).getData(), mensagemController.RetornaNomeAtendente(mensagens.get(i).getRecurso()), str.toString()}); 
             }
         }
     }
     
     
-    
+    //mensagemController.RetornaNomeAtendente(mensagens.get(i).getRecurso())
     
 }

@@ -8,8 +8,8 @@ package br.com.sss.Control;
 
 public class CaminhoImagem {
     
-    String caminho = "/br.com.sss.Imagem/ICONE_DR_JINTERNA.png";
-    String caminhoJanelaPrincipal = "/br.com.sss.Imagem/ICONE_DR_3.png";
+    String caminho = "/Imagens/ICONE_DR_JINTERNA.png";
+    String caminhoJanelaPrincipal = "/Imagens/ICONE_DR_3.png";
 
     public CaminhoImagem() {
     }

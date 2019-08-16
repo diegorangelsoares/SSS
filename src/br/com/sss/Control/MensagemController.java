@@ -135,7 +135,31 @@ public class MensagemController {
             return mensagensDoProtocolo;
     }
     
-    
+    public String RetornaNomeAtendente( String recurso){
+            String nome = recurso;
+            OracleDataSource ods;
+            try {
+                ods = new OracleDataSource();
+                String porta = "1521";
+                ods.setURL("jdbc:oracle:thin:@//"+enderecoBanco+":"+porta+"/"+servicoBanco+""); // jdbc:oracle:thin@//[nome do host]:[porta]/[nome do serviço de BD]
+                ods.setUser(usuarioBanco); // [nome do usuário]
+                ods.setPassword(senhaBanco); // [senha]
+                Connection conn = ods.getConnection();
+                PreparedStatement stmt = conn.prepareStatement("select * from info_atend_255.tmp_siscon_atendente ate\n" +
+                                                                    "where ate.recurso="+recurso);
+                ResultSet rs = stmt.executeQuery();
+                //Preenche os dados no formulario
+                while (rs.next()){
+                    nome = rs.getString("NOME");
+                    
+                }
+            }catch( SQLException e){ //trata os erros SQL
+                JOptionPane.showMessageDialog(null,"Erro ao RetornaNomeAtendente:\n\n"
+                                                 + e.getMessage());
+            }    
+            //JOptionPane.showMessageDialog(null, "fim antes do return");
+            return nome;
+    }
     
     public String retornaWhereParaQeuisarVarios(String textoDigitado){
         

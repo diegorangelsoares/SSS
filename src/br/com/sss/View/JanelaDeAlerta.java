@@ -33,14 +33,14 @@ public class JanelaDeAlerta extends javax.swing.JDialog {
         campoMensagem.setText(texto);
         
         //Muda icone da Janela
-        URL url = this.getClass().getResource("/be.com.sss.Imagem/ICONE_DR_3.png");  
+        URL url = this.getClass().getResource("/Imagens/ICONE_DR_3.png");  
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
         this.setIconImage(imagemTitulo); 
         
         //muda imagem
         campoImagem.setBackground(new java.awt.Color(0, 0, 0));
         campoImagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        campoImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/be.com.sss.Imagem/icone_ok.png")));
+        campoImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_ok.png")));
         //campoImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource(caminhoLogoMarca)));
         campoImagem.setText("");
         

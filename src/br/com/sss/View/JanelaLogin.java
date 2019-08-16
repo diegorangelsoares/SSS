@@ -68,6 +68,11 @@ public class JanelaLogin extends javax.swing.JFrame {
         //co.VerificaCaminhoDoBancoDeDados(co);
 
         
+        //Muda icone da Janela
+        URL url = this.getClass().getResource("/Imagens/ICONE_DR_3.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
+        this.setIconImage(imagemTitulo); 
+        
 //        campoBanco.setVisible(false);
 //        labelNomeLoja.setVisible(false);
         
@@ -230,7 +235,9 @@ public class JanelaLogin extends javax.swing.JFrame {
 //                            boolean resultado = co.ValidaLogin(campoUsuario.getText(), senha, this);
                             String nomePerfil = "MED";
                                 //Selecionou alguma empresa
-                            if (campoUsuario.getText().equals("INFOMED") || campoSenha.getText().equals("gps974")){
+                            boolean respostaDaValidadeLicenca = co.ValidaLicenca();
+                            if (respostaDaValidadeLicenca == true){                                
+                                if (campoUsuario.getText().equals("INFOMED") || campoSenha.getText().equals("gps974")){
                                     //Abrir a tela carregando                                      
                                     //String id = co.retornaIdUsuario(campoUsuario.getText());
                                     //co.inserirRegistroDeUsuario(id,campoUsuario.getText(),"Usuario logou no sistema",dataAtual.RetornaDataAtual()+" "+horaAtual.RetornaHoraAtual());
@@ -239,9 +246,12 @@ public class JanelaLogin extends javax.swing.JFrame {
                                     jcc.show();
                                     this.dispose();
 
+                                }else{
+                                    mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Usuário ou senha inválido!", "Falta informação","erro");
+                                }
                             }else{
-                                mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Usuário ou senha inválido!", "Falta informação","erro");
-                            }
+                                mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Licença venceu na data: "+co.dataValidade+"  Renove-a!", "Falta informação","erro");
+                            } 
                     }
             
             

@@ -32,7 +32,7 @@ public class MensagemErro {
                 //muda imagem
                 jc.campoImagem.setBackground(new java.awt.Color(0, 0, 0));
                 jc.campoImagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                jc.campoImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/be.com.sss.Imagem/icone_ok.png")));
+                jc.campoImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_ok.png")));
                 //campoImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource(caminhoLogoMarca)));
                 jc.campoImagem.setText("");
             }
@@ -40,7 +40,7 @@ public class MensagemErro {
                 //muda imagem
                 jc.campoImagem.setBackground(new java.awt.Color(0, 0, 0));
                 jc.campoImagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                jc.campoImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/be.com.sss.Imagem/icone_erro.png")));
+                jc.campoImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_erro.png")));
                 //campoImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource(caminhoLogoMarca)));
                 jc.campoImagem.setText("");
             }

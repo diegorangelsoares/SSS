@@ -77,7 +77,7 @@ public class GeradorPDF {
     String CaminhoSalvarOS = "C:\\DSistema\\Relatorios\\OrdemDeServico.pdf";
     String CaminhoSalvarImpressao = "C:\\DSistema\\Relatorios\\Impressao.pdf";
     
-    String URLLogo = "/be.com.sss.Imagem/logo.png";
+    String URLLogo = "/Imagens/logo.png";
     
     public String nomeEmpresaPadrao = retornaNomeDaEmpresa();
     
@@ -99,7 +99,7 @@ public class GeradorPDF {
         CaminhoSalvarOS = "C:\\DSistema\\Relatorios\\OrdemDeServico.pdf";
         CaminhoSalvarImpressao = "C:\\DSistema\\Relatorios\\Impressao.pdf";
 
-        URLLogo = "/be.com.sss.Imagem/logo.png";
+        URLLogo = "/Imagens/logo.png";
 
         nomeEmpresaPadrao = retornaNomeDaEmpresa();
 
@@ -5463,7 +5463,7 @@ public class GeradorPDF {
                 //abre o documento
                 doc.open();
                 //Imagens
-                //Image img = Image.getInstance("/be.com.sss.Imagem/logo.png");
+                //Image img = Image.getInstance("/Imagens/logo.png");
                 //img.setAlignment(Element.ALIGN_CENTER);
                 
                 //Cria os textos
@@ -5472,7 +5472,7 @@ public class GeradorPDF {
                 ParagrafoInicial.setAlignment(Element.ALIGN_CENTER);
                     
                 //Adiciona no documento
-                //Image img = Image.getInstance("/be.com.sss.Imagem/Logo.png");
+                //Image img = Image.getInstance("/Imagens/Logo.png");
                 
                 //Image logo = Image.getInstance("/home/gabriel/workspace/iText/src/wehavesciencelogo2.jpeg");
  

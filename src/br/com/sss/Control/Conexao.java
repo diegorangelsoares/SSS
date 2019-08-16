@@ -158,6 +158,9 @@ import oracle.jdbc.pool.OracleDataSource;
     
     public Connection con1;
     
+    public String dataValidade = "15/09/19";
+    //public String dataValidade = "30/09/19";
+    
     //CONSTRUTOR PRINCIPAL DA CLASSE
     public Conexao(){
         /**
@@ -956,6 +959,29 @@ import oracle.jdbc.pool.OracleDataSource;
                 JOptionPane.showMessageDialog(null,"Erro:\n\n"
                                                  + e.getMessage());
             }     
+    }
+    
+    public boolean ValidaLicenca(){
+            
+            long diasVencidos = retornaQuantidadeDeDiasDaValidade(dataValidade);
+            if (diasVencidos > 0){
+                return true;
+            }else{
+                return false;
+            }
+            
+    }
+    
+    public long retornaQuantidadeDeDiasDaValidade (String dataValidadeDaLicenca){            
+                String dataAtualComBarras = dataAtual.RetornaDataAtual();
+                long diferenca = 0;
+                try {
+                    diferenca = verificaDiferencaEntreDatas.retornaDiferencaEmDias(dataAtualComBarras, dataValidadeDaLicenca);
+                    return diferenca;
+                } catch (Exception ex) {
+                    Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+                    return diferenca;
+                }                        
     }
     
     

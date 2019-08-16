@@ -102,14 +102,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         campoVersao.setText("Versão: 1.0.0.5");
         
         //Preenche a licença
-        campoLicenca.setText("Licença: Teste");
+        campoLicenca.setText("Licença Teste Válida até :"+co.dataValidade);
         
         campoMensagem.setText("Busca de protocolos");
        
         //Muda icone da Janela
-        URL url = this.getClass().getResource(caminhoImagemIcone.getCaminhoJanelaPrincipal());
-//        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
-//        this.setIconImage(imagemTitulo); 
+        URL url = this.getClass().getResource("/Imagens/ICONE_DR_3.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
+        this.setIconImage(imagemTitulo); 
         
         areaTrabalho.requestFocus();
         

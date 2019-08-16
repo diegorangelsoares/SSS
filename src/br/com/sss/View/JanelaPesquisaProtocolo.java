@@ -262,7 +262,7 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
         jLabel9.setText("Trecho da Mensagem");
 
         campoMensagem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        campoMensagem.setToolTipText("Sem pesquisa por mensagens");
+        campoMensagem.setToolTipText("");
         campoMensagem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 campoMensagemKeyPressed(evt);

@@ -31,7 +31,7 @@ public class JanelaGraficosDialogo extends javax.swing.JDialog {
         super.setLocationRelativeTo(null);
         
         //Muda icone da Janela
-        URL url = this.getClass().getResource("/be.com.sss.Imagem/ICONE_DR_3.png");  
+        URL url = this.getClass().getResource("/Imagens/ICONE_DR_3.png");  
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
         this.setIconImage(imagemTitulo); 
         

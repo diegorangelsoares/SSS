@@ -145,19 +145,21 @@ public class JanelaMensagens extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tabelaMensagens.setColumnSelectionAllowed(true);
         tabelaMensagens.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tabelaMensagensKeyPressed(evt);
             }
         });
         jScrollPane2.setViewportView(tabelaMensagens);
+        tabelaMensagens.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tabelaMensagens.getColumnModel().getColumnCount() > 0) {
             tabelaMensagens.getColumnModel().getColumn(0).setPreferredWidth(50);
             tabelaMensagens.getColumnModel().getColumn(1).setPreferredWidth(50);
