@@ -3,7 +3,7 @@ package br.com.sss.View;
 
 import br.com.sss.Control.AtualizarSistema;
 import br.com.sss.Control.CaminhoImagem;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 import br.com.sss.Control.ConvertPasswordToMD5;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class JanelaAjuda extends javax.swing.JInternalFrame {
 
     CaminhoImagem caminhoImagemIcone = new CaminhoImagem();
-    Conexao co = new Conexao();
+    ControllerGeral co = new ControllerGeral();
     ConvertPasswordToMD5 ConverteSenha = new ConvertPasswordToMD5();
     AtualizarSistema a = new AtualizarSistema();
     

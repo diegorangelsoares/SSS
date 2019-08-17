@@ -8,7 +8,7 @@ package br.com.sss.View;
 
 import br.com.sss.Control.AtualizarSistema;
 import br.com.sss.Control.CaminhoImagem;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 import br.com.sss.Control.ConvertPasswordToMD5;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -29,7 +29,7 @@ import javax.swing.JOptionPane;
 public class JanelaAtualizacaoDialogo extends javax.swing.JDialog {
 
     CaminhoImagem caminhoImagemIcone = new CaminhoImagem();
-    //Conexao co = new Conexao();
+    //Conexao co = new ControllerGeral();
     ConvertPasswordToMD5 ConverteSenha = new ConvertPasswordToMD5();
     AtualizarSistema at = new AtualizarSistema();
     

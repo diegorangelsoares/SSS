@@ -4,8 +4,8 @@ package br.com.sss.View;
 
 import br.com.sss.model.Empresa;
 import br.com.sss.model.Usuario;
-import br.com.sss.Control.ArquivoConfiguracao;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerArquivo;
+import br.com.sss.Control.ControllerGeral;
 import br.com.sss.Control.ConvertPasswordToMD5;
 import br.com.sss.Control.GeraData;
 import br.com.sss.Control.GeraHora;
@@ -41,7 +41,7 @@ import javax.swing.UIManager;
 public class JanelaLoginAutorizacaoDialogo extends javax.swing.JDialog {
 
     public ConvertPasswordToMD5 ConverteSenha = new ConvertPasswordToMD5();
-    //public Conexao co = new Conexao();
+    //public ControllerGeral co = new ControllerGeral();
     GeraData dataAtual = new GeraData();
     GeraHora horaAtual = new GeraHora();
     MensagemErro mensagemErro = new MensagemErro();
@@ -51,7 +51,7 @@ public class JanelaLoginAutorizacaoDialogo extends javax.swing.JDialog {
     //Cria uma Janela cliente pra pegar o design configurado na janela de cliente
     JanelaDesignNimbus janelaDesign = new JanelaDesignNimbus();
     
-    ArquivoConfiguracao arquivoConfiguracao = new ArquivoConfiguracao();
+    ControllerArquivo arquivoConfiguracao = new ControllerArquivo();
     
     public int numeroDaPermissao = 1;
     
@@ -376,7 +376,7 @@ public class JanelaLoginAutorizacaoDialogo extends javax.swing.JDialog {
     }//GEN-LAST:event_campoSenhaKeyPressed
 
     private void botaoDicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoDicaMouseClicked
-        Conexao co = new Conexao();
+        ControllerGeral co = new ControllerGeral();
         if (campoUsuario.getText().equals("")){
             //XXXXXXXXXXXXXXXnull, "Digite o nome do usuario para ver a dica da senha!");
             mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Digite o nome do usuario para ver a dica da senha!", "Falta informação","erro");
@@ -388,7 +388,7 @@ public class JanelaLoginAutorizacaoDialogo extends javax.swing.JDialog {
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
         //perfil de grafica abre sem login
        
-//        Conexao co = new Conexao();
+//        ControllerGeral co = new ControllerGeral();
 //
 //        //VERIFICA CONFIG, CASO NAO TENHA AINDA ELE CRIA
 //        String usuarioInicial = campoUsuario.getText();
@@ -428,7 +428,7 @@ public class JanelaLoginAutorizacaoDialogo extends javax.swing.JDialog {
 //        if(evt.getKeyCode() == evt.VK_ENTER){
 //            //perfil de grafica abre sem login
 //       
-//        Conexao co = new Conexao();
+//        ControllerGeral co = new ControllerGeral();
 //
 //        //VERIFICA CONFIG, CASO NAO TENHA AINDA ELE CRIA
 //        String usuarioInicial = campoUsuario.getText();

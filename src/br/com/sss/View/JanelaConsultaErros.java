@@ -5,8 +5,8 @@
  */
 package br.com.sss.View;
 
-import br.com.sss.Control.ArquivoConfiguracao;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerArquivo;
+import br.com.sss.Control.ControllerGeral;
 import br.com.sss.Control.GeraData;
 import br.com.sss.Control.MensagemErro;
 import br.com.sss.Control.Negocio;
@@ -34,7 +34,7 @@ public class JanelaConsultaErros extends javax.swing.JInternalFrame {
 
     JanelaDesignNimbus janelaDesign = new JanelaDesignNimbus();
     MensagemErro mensagemErro = new MensagemErro();
-    ArquivoConfiguracao arquivo  = new ArquivoConfiguracao();
+    ControllerArquivo arquivo  = new ControllerArquivo();
     Negocio negocio = new Negocio();
     GeraData geraData = new GeraData();
     
@@ -791,7 +791,7 @@ public class JanelaConsultaErros extends javax.swing.JInternalFrame {
         if (campoUsuarioBanco.getText().equals("") ||  campoSenhaBanco.getText().equals("") ||  campoEnderecoBanco.getText().equals("") || campoServicoBanco.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Nenhuma campo pode ficar em branco (Caminho, usuário, senha e serviço)!");
         }else{
-            Conexao co = new Conexao();
+            ControllerGeral co = new ControllerGeral();
             String banco = (String) campoBanco.getSelectedItem();        
             co.verificaConexaoOracle(banco,"1521",campoUsuarioBanco.getText(), campoSenhaBanco.getText(), campoEnderecoBanco.getText(), campoServicoBanco.getText());
         }
@@ -812,7 +812,7 @@ public class JanelaConsultaErros extends javax.swing.JInternalFrame {
         Date data2 = campoDataFim.getDate();
         String data11 = "";
         String data22 = "";
-        Conexao co = new Conexao();
+        ControllerGeral co = new ControllerGeral();
         if ((data1 == null) || (data2 == null)){
             //XXXXXXXXXXXXXXXXXnull, "Coloque o período de datas para visualisar!");
             mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Informe o período para visualisar!", "Falta informação","erro");

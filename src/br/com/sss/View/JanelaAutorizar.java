@@ -6,7 +6,7 @@
 
 package br.com.sss.View;
 
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 import br.com.sss.Control.ConvertPasswordToMD5;
 import java.awt.Color;
 import java.awt.Component;
@@ -27,7 +27,7 @@ public class JanelaAutorizar extends javax.swing.JFrame {
     
     public int respostaAutorizacao; 
             
-    Conexao co = new Conexao();
+    ControllerGeral co = new ControllerGeral();
     ConvertPasswordToMD5 ConverteSenha = new ConvertPasswordToMD5();
     /**
      * Creates new form JAnelaAutorizar2

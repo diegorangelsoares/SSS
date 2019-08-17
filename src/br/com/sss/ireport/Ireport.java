@@ -1,7 +1,7 @@
 package br.com.sss.ireport;
 
 import br.com.sss.Control.CaminhoImagem;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 import br.com.sss.Control.MensagemErro;
 //import View.JanelaConsultaMedica;
 //import it.businesslogic.ireport.connection.JRXMLDataSource;
@@ -53,7 +53,7 @@ import org.xml.sax.SAXException;
 
 public class Ireport {
     
-        Conexao co = new Conexao();
+        ControllerGeral co = new ControllerGeral();
         CaminhoImagem caminhoImagemIcone = new CaminhoImagem();
         MensagemErro mensagemErro = new MensagemErro();
         

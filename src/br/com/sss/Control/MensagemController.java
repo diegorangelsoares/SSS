@@ -44,7 +44,7 @@ public class MensagemController {
     String usuarioBanco = "sup_infomed";
     String senhaBanco = "gps$$$";
     
-    ArquivoConfiguracao arquivoConfiguracao = new ArquivoConfiguracao();
+    ControllerArquivo arquivoConfiguracao = new ControllerArquivo();
     public GeraTXT GeradorTXT = new GeraTXT();
     
     MensagemErro mensagemErro = new MensagemErro();
@@ -87,7 +87,7 @@ public class MensagemController {
             // fecha conexão com BD
             con1.close();  
         } catch (SQLException ex) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -127,7 +127,7 @@ public class MensagemController {
                 //FechaConexaoBanco(conn);
                 //JOptionPane.showMessageDialog(null, "Fechou conexao");
             }catch( SQLException e){ //trata os erros SQL
-                //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, e);
                 JOptionPane.showMessageDialog(null,"Erro:\n\n"
                                                  + e.getMessage());
             }    

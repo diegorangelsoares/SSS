@@ -2,10 +2,10 @@ package br.com.sss.View;
 
 import br.com.sss.model.Empresa;
 import br.com.sss.Control.AtualizarSistema;
-import br.com.sss.Control.ArquivoConfiguracao;
+import br.com.sss.Control.ControllerArquivo;
 import br.com.sss.Control.CaminhoImagem;
 import br.com.sss.Control.Clean;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 import br.com.sss.Control.MensagemErro;
 import br.com.sss.Control.DadosConexao;
 import br.com.sss.Control.GeraData;
@@ -66,19 +66,20 @@ import javax.swing.WindowConstants;
 
 public class JanelaPrincipal extends javax.swing.JFrame {
         
-    Conexao co = new Conexao();
+    ControllerGeral co = new ControllerGeral();
     GeraData dataAtual = new GeraData();
     String resultadoAutorizacao;
     CaminhoImagem caminhoImagemIcone = new CaminhoImagem();
     AtualizarSistema at = new AtualizarSistema();
     Clean limpar = new Clean();
     Ireport ireport = new Ireport();    
-    ArquivoConfiguracao arquivoConfiguracao = new ArquivoConfiguracao();    
+    ControllerArquivo arquivoConfiguracao = new ControllerArquivo();    
     public String usuarioRodape = "";    
     public String ativadoPerfilDeConsulta = "false";    
     private FlowLayout layout;
     private Container container;
     MensagemErro mensagemErro = new MensagemErro();
+    ControllerArquivo controllerArquivo = new ControllerArquivo();
     
     /**
      * Creates new form JanelaPrincipal
@@ -99,7 +100,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         campoData.setText(dataAtual.RetornaDataAtual());
         
         //Preenche o número da versão na tela inicial
-        campoVersao.setText("Versão: 1.0.0.5");
+        campoVersao.setText("Versão: 1.0.0.6");
         
         //Preenche a licença
         campoLicenca.setText("Licença Teste Válida até :"+co.dataValidade);
@@ -127,6 +128,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 }
             }
         });
+        
+        avisaVersao();
         
         //Verifica as configuracoes das abas e ativa/desativa
         //co.VerificaConfiguracaoDeJanela(this);
@@ -175,7 +178,17 @@ public class JanelaPrincipal extends javax.swing.JFrame {
        
     }
     
-   
+   public void avisaVersao(){
+       boolean temArquivoNovo = false;
+       temArquivoNovo = controllerArquivo.verificaVersaoPorDataDaModificacao();
+       if (temArquivoNovo == true){
+           campoCaminhoBanco.setText("Existe versão nova no temporário!");
+           campoCaminhoBanco.setBackground(Color.red);
+           campoCaminhoBanco.setForeground(Color.WHITE);
+       }else{
+           campoCaminhoBanco.setText("Sistema Atualizado!");
+       }
+   }
     
     //Verifica a resolucao da tela e ajusta
     private void pegarResolucao() {

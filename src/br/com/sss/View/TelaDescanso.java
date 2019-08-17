@@ -5,7 +5,7 @@
  */
 package br.com.sss.View;
 
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 
 /**
  *
@@ -14,7 +14,7 @@ import br.com.sss.Control.Conexao;
 
 public class TelaDescanso extends javax.swing.JFrame {
     
-    Conexao co = new Conexao();
+    ControllerGeral co = new ControllerGeral();
 
     /**
     * Creates new form TelaDescanso

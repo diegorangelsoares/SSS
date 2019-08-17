@@ -12,7 +12,7 @@ import java.util.List;
 
 public class BackupSql {
 
-        Conexao co = new Conexao();
+        ControllerGeral co = new ControllerGeral();
         //boolean Eh64bit = co.verificaSeTemPasta64bits();
         private static String MYSQL_PATH ="C:\\Program Files\\MySQL\\MySQL Server 5.1\\bin\\";                
         private static String VERSION = "4.0.3";

@@ -4,6 +4,9 @@ package Testes;
 import br.com.sss.Control.MensagemController;
 import br.com.sss.Control.ProtocoloController;
 import br.com.sss.model.Mensagem;
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -18,9 +21,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 //import org.hibernate.HibernateException;
 
 /*
@@ -40,7 +46,7 @@ public class NovoJFrame extends javax.swing.JFrame {
     public int alturaDaLinha = 20;
     
     String texto = "Bom dia,\n"
-            + "Me passa a conexaooooo\n"
+            + "Me passa a conexaoo askjdhaksjhdksajhdk haksjdhka jshd kajshdkajshd kjash dkjash dkjash dkjash kajsh dkjashooo\n"
             + "Att\n"
             + "Diego Rangel"
             ;
@@ -72,8 +78,47 @@ public class NovoJFrame extends javax.swing.JFrame {
 //        } catch (FileNotFoundException ex) {
 //            Logger.getLogger(NovoJFrame.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+        jTable2.setValueAt(texto, 0, 4);
+        jTable2.setValueAt(texto, 1, 4);
+        jTable2.setValueAt(texto, 2, 4);
+        jTable2.setValueAt(texto, 3, 4);
+        jTable2.setValueAt(texto, 4, 4);
+        jTable2.setValueAt(texto, 5, 4);
+        updateRowHeights();
 
     }
+    
+    public void tamanho_colunas() {
+        DefaultTableCellRenderer rendererCentro = new DefaultTableCellRenderer();
+        rendererCentro.setHorizontalAlignment(SwingConstants.CENTER);
+
+        DefaultTableCellRenderer rendererDireita = new DefaultTableCellRenderer();  
+        rendererDireita.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        DefaultTableCellRenderer rendererEsquerda = new DefaultTableCellRenderer();  
+        rendererEsquerda.setHorizontalAlignment(SwingConstants.LEFT);  
+
+        JTableHeader header = jTable2.getTableHeader();   
+        header.setPreferredSize(new Dimension(0, 20));   // define a largura do cabeçalho
+        TableColumnModel modeloDaColuna = jTable2.getColumnModel();  
+
+        modeloDaColuna.getColumn(0).setCellRenderer(rendererCentro);  
+        modeloDaColuna.getColumn(1).setCellRenderer(rendererEsquerda); 
+        modeloDaColuna.getColumn(2).setCellRenderer(rendererEsquerda);
+        modeloDaColuna.getColumn(3).setCellRenderer(rendererCentro);
+        modeloDaColuna.getColumn(4).setCellRenderer(rendererEsquerda);
+//        modeloDaColuna.getColumn(5).setCellRenderer(rendererEsquerda);
+//        modeloDaColuna.getColumn(6).setCellRenderer(rendererCentro);
+
+        modeloDaColuna.getColumn(0).setMaxWidth(50);  
+        modeloDaColuna.getColumn(1).setMaxWidth(350);
+        modeloDaColuna.getColumn(2).setMaxWidth(350);
+        modeloDaColuna.getColumn(3).setMaxWidth(50);
+        modeloDaColuna.getColumn(4).setMaxWidth(200);
+//        modeloDaColuna.getColumn(5).setMaxWidth(200);
+//        modeloDaColuna.getColumn(6).setMaxWidth(100);
+       
+}
     
     public void calculaAlturaLinha(String texto){
         String s = texto;
@@ -97,6 +142,9 @@ public class NovoJFrame extends javax.swing.JFrame {
 //
 //        alturaDaLinha = alturaDaLinha *contagem + 10; 
 //        jTable1.setRowHeight(alturaDaLinha); 
+
+
+            
     }
     
     
@@ -117,6 +165,18 @@ public class NovoJFrame extends javax.swing.JFrame {
 //
 //        br.close();
     }
+    
+    private void updateRowHeights() { 
+        
+        for (int row = 0; row < jTable2.getRowCount(); row++) { 
+            int rowHeight = jTable2.getRowHeight(); 
+            for (int column = 0; column < jTable2.getColumnCount(); column++) { 
+                Component comp = jTable2.prepareRenderer(jTable2.getCellRenderer(row, column), row, column); 
+                rowHeight = Math.max(rowHeight, comp.getPreferredSize().height); 
+            } jTable2.setRowHeight(row, rowHeight); 
+        } 
+    } 
+
     
     public boolean verificaSeNumero(String textoo){
         if (textoo.contains("0") || textoo.contains("1") || textoo.contains("2") || textoo.contains("3") || textoo.contains("4") || textoo.contains("5") || textoo.contains("6") || textoo.contains("7") || textoo.contains("8") || textoo.contains("9")){
@@ -191,7 +251,16 @@ public class NovoJFrame extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "Nº", "Coluna 1", "Coluna 2", "Coluna 3", "Título 4"

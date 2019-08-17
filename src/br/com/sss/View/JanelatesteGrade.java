@@ -7,7 +7,7 @@ package br.com.sss.View;
 
 import br.com.sss.Control.CaminhoImagem;
 import br.com.sss.Control.Clean;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -29,7 +29,7 @@ public class JanelatesteGrade extends javax.swing.JFrame {
 
     CaminhoImagem caminhoImagemIcone = new CaminhoImagem();
     Clean limpar = new Clean();
-    Conexao co = new Conexao();
+    ControllerGeral co = new ControllerGeral();
     StringBuilder str = new StringBuilder();
     String texto = "Boa tarde, \n Segue os dados conforme solicitado. \n ajsndkjansdkjas \n Att \n";
     public int alturaDaLinha = 100;

@@ -5,8 +5,8 @@
  */
 package br.com.sss.View;
 
-import br.com.sss.Control.ArquivoConfiguracao;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerArquivo;
+import br.com.sss.Control.ControllerGeral;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
@@ -18,8 +18,8 @@ import java.net.URL;
  */
 public class JanelaPerguntaImpressoraDialogo extends javax.swing.JDialog {
 
-    Conexao co = new Conexao();
-    ArquivoConfiguracao arquivoConfiguracao = new ArquivoConfiguracao();
+    ControllerGeral co = new ControllerGeral();
+    ControllerArquivo arquivoConfiguracao = new ControllerArquivo();
     JanelaDesignNimbus janelaDesign = new JanelaDesignNimbus();
     
     public String impressoraEscolhida = "48";

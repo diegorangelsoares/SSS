@@ -7,7 +7,7 @@ package br.com.sss.View;
 
 import br.com.sss.Control.CaminhoImagem;
 import br.com.sss.Control.Clean;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 import br.com.sss.Control.TextAreaCellRenderer;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -31,7 +31,7 @@ public class JanelaMensagens extends javax.swing.JDialog {
 
     CaminhoImagem caminhoImagemIcone = new CaminhoImagem();
     Clean limpar = new Clean();
-    //Conexao co = new Conexao();
+    //Conexao co = new ControllerGeral();
     StringBuilder str = new StringBuilder();
     public int alturaDaLinha = 100;
     

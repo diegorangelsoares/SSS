@@ -2,8 +2,8 @@ package br.com.sss.View;
 
 import br.com.sss.model.Empresa;
 import br.com.sss.model.Usuario;
-import br.com.sss.Control.ArquivoConfiguracao;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerArquivo;
+import br.com.sss.Control.ControllerGeral;
 import br.com.sss.Control.ConvertPasswordToMD5;
 import br.com.sss.Control.GeraData;
 import br.com.sss.Control.GeraHora;
@@ -212,8 +212,8 @@ public class JanelaLogin extends javax.swing.JFrame {
 
     public void TrataEntradaAoApertarNoBotaoEntrar(){
                 
-                Conexao co = new Conexao();
-                ArquivoConfiguracao arquivoConfiguracao = new ArquivoConfiguracao();
+                ControllerGeral co = new ControllerGeral();
+                ControllerArquivo arquivoConfiguracao = new ControllerArquivo();
                 TiraAspaSimplesDoCampo(campoUsuario);
                 //VERIFICA CONFIG, CASO NAO TENHA AINDA ELE CRIA
                 String usuarioInicial = campoUsuario.getText();

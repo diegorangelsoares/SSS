@@ -32,7 +32,7 @@ import java.util.Locale;
 
 public class AtualizarSistema {
     
-        Conexao co = new Conexao();
+        ControllerGeral co = new ControllerGeral();
         GeraData dataAtual = new GeraData();
         DrMail email = new DrMail();
         MensagemErro mensagemErro = new MensagemErro();

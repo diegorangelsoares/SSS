@@ -260,6 +260,21 @@ public class GeraData {
             return data;
     }
     
+    public Date transformaDatadigitadaEmDatePassandoDataHora (String dataString){
+            //Converter a data digitada no campo com a barra para guardar no banco sem a barra
+            Date data = new Date();
+            SimpleDateFormat sdfData = new SimpleDateFormat("yyMMddMMHH");
+            //SimpleDateFormat sdfDt = new SimpleDateFormat("yyyyMMdd");
+            data = null;
+            String dataAConverter = dataString;
+            try {
+                data = sdfData.parse(dataAConverter);
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao converter data: "+ex);
+            }
+            return data;
+    }
+    
     //Transforma data dd/mm/aaaa em dd/mm/aa
     public String TransformaDataComBarraEYYYYEmDataYY (String dataComYYYY){
             //Converter a data digitada no campo com a barra para guardar no banco sem a barra

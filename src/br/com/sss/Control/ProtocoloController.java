@@ -35,7 +35,7 @@ public class ProtocoloController {
     
     public Connection con1;
     
-    ArquivoConfiguracao arquivoConfiguracao = new ArquivoConfiguracao();
+    ControllerArquivo arquivoConfiguracao = new ControllerArquivo();
     
     public Statement AbreConexaoBancoOracle(){
         OracleDataSource ods;
@@ -73,7 +73,7 @@ public class ProtocoloController {
             // fecha conexão com BD
             con1.close();  
         } catch (SQLException ex) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -128,7 +128,7 @@ public class ProtocoloController {
                 //FechaConexaoBanco(conn);
                 //JOptionPane.showMessageDialog(null, "Fechou conexao");
             }catch( SQLException e){ //trata os erros SQL
-                //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, e);
 //                JOptionPane.showMessageDialog(null,"Erro:\n\n"
 //                                                 + e.getMessage());
                 criaArquivoErroEEnviaEmail(e, "buscaProtocolosComOperadoraComAtendente");
@@ -186,7 +186,7 @@ public class ProtocoloController {
                 //FechaConexaoBanco(conn);
                 //JOptionPane.showMessageDialog(null, "Fechou conexao");
             }catch( SQLException e){ //trata os erros SQL
-                //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, e);
 //                JOptionPane.showMessageDialog(null,"Erro:\n\n"
 //                                                 + e.getMessage());
                 criaArquivoErroEEnviaEmail(e, "buscaProtocolosSimples");
@@ -213,7 +213,7 @@ public class ProtocoloController {
                     "       and upper(prot.Atendente) like '%"+Atendente+"%'"
                   + "" + where + " " + whereMensagem + " group by prot.protocolo, prot.DATAENTRADA, prot.cliente, prot.resumo";
         
-        arquivoConfiguracao.criArquivoDeSelect(query);
+        //arquivoConfiguracao.criArquivoDeSelect(query);
         System.out.println("SQL da consulta: "+query);
         //JOptionPane.showMessageDialog(null, "SQL da consulta: "+query);
         List<Protocolo> protocolosPequisados = new ArrayList<Protocolo>();
@@ -262,7 +262,7 @@ public class ProtocoloController {
                 //FechaConexaoBanco(conn);
                 //JOptionPane.showMessageDialog(null, "Fechou conexao");
             }catch( SQLException e){ //trata os erros SQL
-                //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, e);
 //                JOptionPane.showMessageDialog(null,"Erro:\n\n"
 //                                                 + e.getMessage());
                 criaArquivoErroEEnviaEmail(e, "buscaProtocolosDinamico");
@@ -289,7 +289,7 @@ public class ProtocoloController {
                     "       and upper(prot.Atendente) like '%"+Atendente+"%'"
                   + "" + where + "  group by prot.protocolo, prot.DATAENTRADA, prot.cliente, prot.resumo";
         
-        arquivoConfiguracao.criArquivoDeSelect(query);
+        //arquivoConfiguracao.criArquivoDeSelect(query);
         System.out.println("SQL da consulta: "+query);
         //JOptionPane.showMessageDialog(null, "SQL da consulta: "+query);
         List<Protocolo> protocolosPequisados = new ArrayList<Protocolo>();
@@ -338,7 +338,7 @@ public class ProtocoloController {
                 //FechaConexaoBanco(conn);
                 //JOptionPane.showMessageDialog(null, "Fechou conexao");
             }catch( SQLException e){ //trata os erros SQL
-                //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, e);
 //                JOptionPane.showMessageDialog(null,"Erro:\n\n"
 //                                                 + e.getMessage());
                 criaArquivoErroEEnviaEmail(e, "buscaProtocolosDinamicoSemMensagens");
@@ -364,7 +364,7 @@ public class ProtocoloController {
                     atendentes.add(atendente);
                 }
             }catch( SQLException e){ //trata os erros SQL
-                //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, e);
 //                JOptionPane.showMessageDialog(null,"Erro:\n\n"
 //                                                 + e.getMessage());
                 criaArquivoErroEEnviaEmail(e, "retornaAtendentesDosProtocolos");
@@ -389,7 +389,7 @@ public class ProtocoloController {
                     clientes.add(cliente);
                 }
             }catch( SQLException e){ //trata os erros SQL
-                //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, e);
 //                JOptionPane.showMessageDialog(null,"Erro:\n\n"
 //                                                 + e.getMessage());
                 criaArquivoErroEEnviaEmail(e, "retornaOperadorasDosProtocolos");

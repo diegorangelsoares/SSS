@@ -6,7 +6,7 @@ package br.com.sss.View;
  * and open the template in the editor.
  */
 
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 import br.com.sss.Control.ConvertPasswordToMD5;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class PainelAutorizacao extends javax.swing.JPanel {
 
     ConvertPasswordToMD5 ConverteSenha = new ConvertPasswordToMD5();
-    Conexao co = new Conexao();
+    ControllerGeral co = new ControllerGeral();
     
     private FlowLayout layout;
     private Container container;

@@ -30,7 +30,7 @@ public class Negocio {
     
     GeraData geraData = new GeraData();
     GeraHora geraHora = new GeraHora();
-    ArquivoConfiguracao arquivoConfiguracao = new ArquivoConfiguracao();
+    ControllerArquivo arquivoConfiguracao = new ControllerArquivo();
     MensagemErro mensagemErro = new MensagemErro();
     
     public int preencheSabadosDomingos(String Mes, String Ano, JTable tabela){

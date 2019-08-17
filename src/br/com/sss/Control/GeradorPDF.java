@@ -179,10 +179,10 @@ public class GeradorPDF {
             //Retorna a instancia do banco conectado
             return stmt; //Retorna a instancia
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         } catch (SQLException ex) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -192,7 +192,7 @@ public class GeradorPDF {
             // fecha conexão com BD
             con1.close();  
         } catch (SQLException ex) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

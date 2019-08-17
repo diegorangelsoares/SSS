@@ -2,7 +2,7 @@ package br.com.sss.View;
 
 import br.com.sss.model.Empresa;
 import br.com.sss.Control.CaminhoImagem;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 import br.com.sss.Control.GeraData;
 import br.com.sss.Control.GeradorPDF;
 import br.com.sss.Control.ZiparPasta;
@@ -31,7 +31,7 @@ public class JanelaRelatoriosGerais extends javax.swing.JInternalFrame {
     CaminhoImagem caminhoImagemIcone = new CaminhoImagem();
     GeradorPDF geraPDF = new GeradorPDF();
     GeraData dataAtual = new GeraData();
-    Conexao co = new Conexao();
+    ControllerGeral co = new ControllerGeral();
     GeradorPDF geradorPDFFull = new GeradorPDF();
     ZiparPasta ziparPasta = new ZiparPasta();
     DrMail enviaEmail = new DrMail();

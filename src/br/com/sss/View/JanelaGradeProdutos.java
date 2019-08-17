@@ -8,7 +8,7 @@ package br.com.sss.View;
 
 import br.com.sss.Control.CaminhoImagem;
 import br.com.sss.Control.Clean;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 //import br.com.sss.Control.ModificaJanelaPeloPerfil;
 import br.com.sss.Control.MensagemErro;
 import java.awt.Image;
@@ -28,7 +28,7 @@ public class JanelaGradeProdutos extends javax.swing.JFrame {
 
     CaminhoImagem caminhoImagemIcone = new CaminhoImagem();
     Clean limpar = new Clean();
-    Conexao co = new Conexao();
+    ControllerGeral co = new ControllerGeral();
     public int totalDeItens = 0;
     //ModificaJanelaPeloPerfil modificaJanelaPeloPerfil = new ModificaJanelaPeloPerfil();
     MensagemErro mensagemErro = new MensagemErro();

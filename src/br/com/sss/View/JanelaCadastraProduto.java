@@ -4,7 +4,7 @@ package br.com.sss.View;
 
 import br.com.sss.Control.CaminhoImagem;
 import br.com.sss.Control.Clean;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 //import br.com.sss.Control.ModificaJanelaPeloPerfil;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -28,7 +28,7 @@ public class JanelaCadastraProduto extends javax.swing.JInternalFrame {
     
     CaminhoImagem caminhoImagemIcone = new CaminhoImagem();
     Clean limpar = new Clean();
-    Conexao c = new Conexao();
+    ControllerGeral c = new ControllerGeral();
     //public String perfil = "Teste";
     //ModificaJanelaPeloPerfil modificaJanelaPeloPerfil = new ModificaJanelaPeloPerfil();
     GeradorPDF geraPDF = new GeradorPDF();

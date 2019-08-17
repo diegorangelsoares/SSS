@@ -4,7 +4,7 @@ package br.com.sss.View;
 
 import br.com.sss.Control.CaminhoImagem;
 import br.com.sss.Control.Clean;
-import br.com.sss.Control.Conexao;
+import br.com.sss.Control.ControllerGeral;
 import br.com.sss.Control.ControllerJanelaMensagens;
 import br.com.sss.Control.ControllerJanelaProtocolos;
 import java.awt.Dimension;
@@ -27,7 +27,7 @@ public class JanelaPesquisaProtocolo extends javax.swing.JInternalFrame {
 
     CaminhoImagem caminhoImagemIcone = new CaminhoImagem();
     Clean limpar = new Clean();
-    Conexao co = new Conexao();
+    ControllerGeral co = new ControllerGeral();
     ControllerJanelaProtocolos controller = new ControllerJanelaProtocolos();
     
     /**

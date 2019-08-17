@@ -5,12 +5,18 @@ import br.com.sss.Control.MensagemErro;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.channels.FileChannel;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,7 +26,7 @@ import javax.swing.JOptionPane;
  * @author Diego Rangel
  */
 
-public class ArquivoConfiguracao {
+public class ControllerArquivo {
     
     GeraData dataAtual = new GeraData();
     GeraHora horaAtual = new GeraHora();
@@ -29,7 +35,7 @@ public class ArquivoConfiguracao {
     
     MensagemErro mensagemErro = new MensagemErro();
     
-    public ArquivoConfiguracao(){
+    public ControllerArquivo(){
        // criaPastaDentroDoDSistema("NFE");
     }
     
@@ -822,5 +828,102 @@ public class ArquivoConfiguracao {
                 //mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso( "O Windows não deixou criar o arquivo ConfiguracaoNFE.ini!","Falta Informação","erro");
             
     }
+    
+    public boolean verificaSeVersaoNaPasta(){
+            String caminho = "\\\\jpa-smb001\\temporario\\diego\\Install\\DSistema\\SSS.jar";
+            String barra = "\\";
+            barra = barra.substring(0, 1);
+            //caminho = caminho.replace("/", barra);
+            //JOptionPane.showMessageDialog(null, "Caminho da pasta: "+caminho);
+            File arquivo = new File(caminho); // ajfilho é uma pasta!
+            if (!arquivo.exists()) {
+               //JOptionPane.showMessageDialog(null, "Diretório não existe!");
+               return false;
+            } else {
+               //JOptionPane.showMessageDialog(null, "Diretório já existente!");
+               return true;
+            }
+    }
+    
+    public boolean verificaSeTemSSSJarNaPastaDsistema(){
+            File arquivo = new File("C:\\DSistema\\SSS.jar"); // ajfilho é uma pasta!
+            if (!arquivo.exists()) {
+               //JOptionPane.showMessageDialog(null, "Diretório não existe!");
+               return false;
+            } else {
+               //JOptionPane.showMessageDialog(null, "Diretório já existente!");
+               return true;
+            }
+    }
+    
+    public String verificaDataModificacao(String nomeDoArquivo){
+            File arquivo = new File(nomeDoArquivo);
+            //File arquivo = new File("c:/arquivo.txt");
+            //DateFormat formatData = new SimpleDateFormat("dd/MM/yyyy");   
+            DateFormat formatData = new SimpleDateFormat("yyMMddMMHH"); 
+            String data = formatData.format(new Date(arquivo.lastModified()));
+            return data;
+    }
+    
+    public void copiaArquivo(File origem, File destination) throws IOException {
+            if (destination.exists())
+                destination.delete();
+            FileChannel sourceChannel = null;
+            FileChannel destinationChannel = null;
+            try {
+                sourceChannel = new FileInputStream(origem).getChannel();
+                destinationChannel = new FileOutputStream(destination).getChannel();
+                sourceChannel.transferTo(0, sourceChannel.size(),
+                        destinationChannel);
+            } finally {
+                if (sourceChannel != null && sourceChannel.isOpen())
+                    sourceChannel.close();
+                if (destinationChannel != null && destinationChannel.isOpen())
+                    destinationChannel.close();
+           }
+    }
+    
+    public int comparaDatas(Date data1, Date data2){
+            return data1.compareTo(data2);
+        }
+    
+    public boolean verificaVersaoPorDataDaModificacao(){
+        boolean retorno = false;
+        if (verificaSeTemSSSJarNaPastaDsistema() == true){     
+            if (verificaSeVersaoNaPasta() == true){
+                //Tem arquivo lá
+                
+                String caminhoServidorArquivo = "\\\\jpa-smb001\\temporario\\diego\\Install\\DSistema\\SSS.jar";
+                String caminhoTerminalArquivo = "C:\\DSistema\\SSS.jar";
+                String dataModificacaoDoTerminal = verificaDataModificacao("C:\\DSistema\\SSS.jar");
+                String dataModificacaoDoServidor = verificaDataModificacao("\\\\jpa-smb001\\temporario\\diego\\Install\\DSistema\\SSS.jar");
+                //criArquivoDeSelect("dataModificacaoDoTerminal:"+dataModificacaoDoTerminal+"\ndataModificacaoDoServidor:"+dataModificacaoDoServidor);
+                Date dataModificacao1 = dataAtual.transformaDatadigitadaEmDatePassandoDataHora(dataModificacaoDoTerminal);
+                Date dataModificacao2 = dataAtual.transformaDatadigitadaEmDatePassandoDataHora(dataModificacaoDoServidor);
+                int diferencaEntreAsDatasEmDias = comparaDatas(dataModificacao1,dataModificacao2);
+                //JOptionPane.showMessageDialog(null, "A diferença entre as 2 datas digitadas é:"+comparaDatas(dataModificacao1,dataModificacao2));
+                if (diferencaEntreAsDatasEmDias > 30){
+                    /**                    
+                    //JOptionPane.showMessageDialog(null, "Versão Precisa ser atualizada");
+                    //Fazer procedimento de copiar arquivo do servidor para o terminal
+                    File arquivoOrigem = new File (caminhoServidorArquivo);
+                    File arquivoDestino = new File (caminhoTerminalArquivo);
+                    try {
+                        copiaArquivo(arquivoOrigem,arquivoDestino);
+                    } catch (IOException ex) {
+                        mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso( "Não foi possível copiar o arquivo! - Erro:"+ex.getMessage(),"Falta Informação","erro");
+                        //Logger.getLogger(AtualizarSistema.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    */ 
+                    retorno = true;
+                }
+
+            }
+        }
+        return retorno;
+    }
+    
+    
+    
     
 }

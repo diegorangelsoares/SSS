@@ -115,7 +115,7 @@ import oracle.jdbc.pool.OracleDataSource;
         #Consultorio#Jacob#Nena#RANGEL#TICIANO#Construtora#Joias#Receitas#grafica#cadastros#VIDRACARIA#
     */
 
-    public class Conexao {
+    public class ControllerGeral {
         
     
     public Clean limpar = new Clean();
@@ -154,7 +154,7 @@ import oracle.jdbc.pool.OracleDataSource;
     String token = "joWcm9dS1RAAAAAAAAAEAgXd4Vn3gE04mbNTFrN8A7XpEoQdfxoqGPP7hCF4cVhT";
     
     
-    ArquivoConfiguracao arquivoConfiguracao = new ArquivoConfiguracao();
+    ControllerArquivo arquivoConfiguracao = new ControllerArquivo();
     
     public Connection con1;
     
@@ -162,7 +162,7 @@ import oracle.jdbc.pool.OracleDataSource;
     //public String dataValidade = "30/09/19";
     
     //CONSTRUTOR PRINCIPAL DA CLASSE
-    public Conexao(){
+    public ControllerGeral(){
         /**
         VerificaCaminhoDoBancoDeDados(this);        
         em = retornaDadosDaEmpresa();  
@@ -321,7 +321,7 @@ import oracle.jdbc.pool.OracleDataSource;
     //criaPastaDSistema()
         //verificaSeTemPastaDSISTEMA
 
-    public void VerificaCaminhoDoBancoDeDados(Conexao c){
+    public void VerificaCaminhoDoBancoDeDados(ControllerGeral c){
         String SO = verificaSistemaOperacional();            
         if (SO.contains("WINDOWS")){
             //Sistema operacional é windows
@@ -361,7 +361,7 @@ import oracle.jdbc.pool.OracleDataSource;
             }
     }
     
-    public String retornaCaminhoBDTXT(Conexao c){
+    public String retornaCaminhoBDTXT(ControllerGeral c){
         try { 
             FileReader arq = new FileReader("c:\\DSistema\\CaminhoBD.txt");
             BufferedReader lerArq = new BufferedReader(arq); 
@@ -375,6 +375,14 @@ import oracle.jdbc.pool.OracleDataSource;
     }
     
     public void criaArquivoErroEEnviaEmail(SQLException ex, String nomeFuncao){
+        String nomeDoArquivo = GeradorTXT.GeraTxtDeErro("Erro Cmdo SQL " + ex.getMessage()+" Ao "+nomeFuncao);
+        String textoDoEmailDeErro = "Erro no Comando SQL: " + ex.getMessage()+" Ao executar a função: "+nomeFuncao+"\n\nVersão do Sistema: "+versaoSistema;
+        //mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso( "Erro - Contate o desenvolvedor!");
+        mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Erro - Contate o desenvolvedor!", "Desculpe-me pelo Erro","erro");
+        email.enviarEmailDoErro(nomeEmpresaPadrao,"Registro de erro do sistema" , nomeDoArquivo,versaoSistema);
+    }
+    
+    public void criaArquivoErroEEnviaEmail(Exception ex, String nomeFuncao){
         String nomeDoArquivo = GeradorTXT.GeraTxtDeErro("Erro Cmdo SQL " + ex.getMessage()+" Ao "+nomeFuncao);
         String textoDoEmailDeErro = "Erro no Comando SQL: " + ex.getMessage()+" Ao executar a função: "+nomeFuncao+"\n\nVersão do Sistema: "+versaoSistema;
         //mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso( "Erro - Contate o desenvolvedor!");
@@ -405,7 +413,7 @@ import oracle.jdbc.pool.OracleDataSource;
         email.enviarEmailDoErro(nomeEmpresaPadrao,"Registro de erro do sistema" , nomeDoArquivo,versaoSistema);
     }
     
-    public String retornaCaminhoBDIni(Conexao c){
+    public String retornaCaminhoBDIni(ControllerGeral c){
         
         try { 
             FileReader arq = new FileReader("c:\\DSistema\\CaminhoBD.ini");
@@ -844,7 +852,7 @@ import oracle.jdbc.pool.OracleDataSource;
             return stmt; //Retorna a instancia
         } catch (ClassNotFoundException ex) {
             mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso("Impossível conectar com o banco, verifique o drive do Mysql!","Falta Informação","erro");            
-            //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         } catch (SQLException ex) {
             //mensagemErro.abrirAlertaDeOperacaoFeitaComSucesso( "Impossível localizar o servidor: "+caminhoServidor);
@@ -892,7 +900,7 @@ import oracle.jdbc.pool.OracleDataSource;
             // fecha conexão com BD
             con1.close();  
         } catch (SQLException ex) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -914,7 +922,7 @@ import oracle.jdbc.pool.OracleDataSource;
             //  System.out.println(rslt.getString(1));
             //}
         } catch (SQLException ex) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null,"Impossível localizar o banco! Erro:\n\n"
                                                  + ex.getMessage());
         }
@@ -955,7 +963,7 @@ import oracle.jdbc.pool.OracleDataSource;
                 }
                 FechaConexaoBanco(con1);
             }catch( SQLException e){ //trata os erros SQL
-                //Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, e);
                 JOptionPane.showMessageDialog(null,"Erro:\n\n"
                                                  + e.getMessage());
             }     
@@ -979,7 +987,8 @@ import oracle.jdbc.pool.OracleDataSource;
                     diferenca = verificaDiferencaEntreDatas.retornaDiferencaEmDias(dataAtualComBarras, dataValidadeDaLicenca);
                     return diferenca;
                 } catch (Exception ex) {
-                    Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ControllerGeral.class.getName()).log(Level.SEVERE, null, ex);
+                    criaArquivoErroEEnviaEmail(ex, "retornaQuantidadeDeDiasDaValidade");
                     return diferenca;
                 }                        
     }
